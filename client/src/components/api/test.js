@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './App.css';
 import { useForm } from "react-hook-form";
+import AppInfo from '../app-info/app-info';
+import CarriersList from '../carriers-list/carriers-list';
+import CarriersAddForm from '../carriers-add-form/carriers-add-form';
 
 const HOST = process.env.REACT_APP_API_KEY
+
+
 const getCarriers = async () => {
   return await axios.get(`${HOST}`)
 }
@@ -30,10 +34,10 @@ const App = () => {
 
   const [carriers, setCarriers] = useState([])
   const [editCarrier, setEditCarrier] = useState({})
-  console.log(editCarrier);
+  // console.log(editCarrier);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  
   const onSubmit = async data => { 
-    
     await createCarrier(data)
     await getCarriers().then(response => setCarriers(response.data))
    };
@@ -44,6 +48,10 @@ const App = () => {
 
   return (
     <div>
+      <AppInfo/>
+      <CarriersAddForm/>
+      <CarriersList/>
+
       { carriers.map((carrier) => <CarrierItem onClick={setEditCarrier}  key={carrier._id} carrier={carrier}/>)}
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -63,4 +71,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default getCarriers; 

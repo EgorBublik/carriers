@@ -28,7 +28,7 @@ export class CarriersService {
     }
 
     async remove(id: string): Promise<Carrier> {
-        return this.carrierModel.findByIdAndRemove()
+        return this.carrierModel.findByIdAndRemove(id)
     }
 
     async update(id: string, carrierDto: UpdateCarrierDto): Promise<Carrier> {

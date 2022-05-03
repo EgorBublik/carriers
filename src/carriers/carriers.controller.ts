@@ -27,6 +27,7 @@ export class CarriersController {
 
     @Delete(':id')
     remove(@Param('id') id:string): Promise<Carrier> {
+        console.log(id)
         return this.carriersService.remove(id)
     }
     
