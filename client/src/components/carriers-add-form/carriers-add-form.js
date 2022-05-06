@@ -12,7 +12,7 @@ const CarriersAddForm = ({updateCarriers}) => {
     
     const onSubmit = async data => { 
         await createCarrier(data).then(() => {
-            updateCarriers((prevState) => prevState + 1 )
+            updateCarriers()
             reset()
         })
         

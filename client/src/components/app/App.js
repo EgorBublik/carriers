@@ -12,10 +12,13 @@ const App = () => {
 
   const removeCarrier = async (id) => {
       await deleteCarrier(id).then(() => {
-        setUpdateCarriers(prevState => prevState + 1)
+        handleUpdateCarriers()
       })
   }
   
+  const handleUpdateCarriers = () => {
+    setUpdateCarriers((prevState) => prevState + 1 )
+  }
   
 
   useEffect(() => {
@@ -26,7 +29,7 @@ const App = () => {
     <div>
       <AppInfo/>
       <CarriersAddForm updateCarriers={setUpdateCarriers}/>
-      <CarriersList removeCarrier={removeCarrier} carriers={carriers}/>
+      <CarriersList updateCarriers={handleUpdateCarriers} removeCarrier={removeCarrier} carriers={carriers}/>
     </div>    
   );
 }
