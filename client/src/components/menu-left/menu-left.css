@@ -1,0 +1,39 @@
+.menu {
+    height: 100vh;
+    border-right: 1px dashed #dfe4e8;
+    background-color: #f9fafb
+}
+
+.logo {
+    padding: 10px 25px;
+}
+
+.username {
+    margin: 15px auto;
+    border-radius: 12px;
+    background-color: rgba(145, 158, 171, 0.12);
+    text-align: center;
+    padding: 15px
+}
+
+.menu-list {
+    width: 100%;
+}
+.menu-list-item {
+    display: block;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 2px;
+}
+
+.menu-list-item:hover {
+    background-color: rgba(145, 158, 171, 0.12);
+}
+
+.active {
+    text-decoration: none;
+    background-color: #e7edf7;
+    color: #3d5ad7;
+    font-weight: 500;
+}

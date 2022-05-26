@@ -1,7 +1,52 @@
-.app-list {
+.carriers-list {
+    border: 1px solid #dfe4e8;
+    border-radius: 10px;
+    padding: 15px;
     margin-top: 30px;
-    background-color: #3d5a80;
-    border-radius: 4px;
-    box-shadow: 15px 15px 30px rgba(0,0,0, .15);
-    color: #fff;
+}
+
+.add-carrier-btn {
+    text-align: right;
+}
+
+.fa-trash-can {
+    margin-top: 15px;
+    color: rgb(208, 37, 37);
+    height: 27px;
+    padding: 5px
+}
+
+.fa-trash-can:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.fa-pencil {
+    color: black;
+    margin-left: 5px;
+    height: 27px;
+    padding: 5px;
+}
+
+.fa-pencil:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+table tr {
+    vertical-align: middle;
+}
+
+.search {
+    position: relative;
+}
+
+.search-input {
+    padding-left: 40px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 10px;
+    padding-left: 10px;
 }

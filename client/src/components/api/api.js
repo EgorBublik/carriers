@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const HOST = process.env.REACT_APP_API_KEY
+const HOST = "http://localhost:4000/carriers/"
 
 export const getCarriers = async () => {
-  return await axios.get(`${HOST}`)
+  return await axios.get(HOST)
 }
 
 export const createCarrier = async (carrier) => {

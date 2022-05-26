@@ -1,0 +1,29 @@
+.add-course-btn {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.course-item-delete {
+    padding: 0;
+}
+.course-item-delete-icon {
+    position: relative;
+    top: 55%;
+    color: red;
+    cursor: pointer;
+}
+
+.course-item-save {
+    text-align: center;
+}
+.course-item-save button {
+    width: 40%;
+}
+
+.secondary-stream {
+    margin-top: 30px;
+}
+
+.course-item-save {
+    margin-top: 30px;
+}

@@ -1,0 +1,10 @@
+.user-list {
+    border: 1px solid #dfe4e8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+.add-user-btn {
+    text-align: right;
+}

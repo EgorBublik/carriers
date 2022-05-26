@@ -1,36 +1,42 @@
 import './App.css';
-import AppInfo from '../app-info/app-info';
+import MenuLeft from '../menu-left/menu-left';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Header from '../header/Header';
+import UserList from '../user-list/UserList';
 import CarriersList from '../carriers-list/carriers-list';
-import CarriersAddForm from '../carriers-add-form/carriers-add-form';
-import { useState, useEffect } from 'react';
-import {getCarriers, deleteCarrier} from '../api/api';
+import CarrierItem from '../carrier-item/carrier-item';
+import { Routes, Route} from "react-router-dom";
+import LoginPage from '../login-page/login-page';
+import Course from '../course/course';
+import CourseItem from '../course-item/course-item';
+import { RootStoreProvider, RootStore } from '../../store/rootstore';
 
 const App = () => {
+  const rootStore = new RootStore()
   
-  const [updateCarriers, setUpdateCarriers] = useState(0)
-  const [carriers, setCarriers] = useState([])
-
-  const removeCarrier = async (id) => {
-      await deleteCarrier(id).then(() => {
-        handleUpdateCarriers()
-      })
-  }
-  
-  const handleUpdateCarriers = () => {
-    setUpdateCarriers((prevState) => prevState + 1 )
-  }
-  
-
-  useEffect(() => {
-      getCarriers().then(response => setCarriers(response.data))
-  }, [updateCarriers])
-
   return (
-    <div>
-      <AppInfo/>
-      <CarriersAddForm updateCarriers={setUpdateCarriers}/>
-      <CarriersList updateCarriers={handleUpdateCarriers} removeCarrier={removeCarrier} carriers={carriers}/>
-    </div>    
+    <RootStoreProvider value={rootStore}>
+      <div className="app row">
+        {/* <LoginPage/> */}
+
+        <div className="left col-2">
+          <MenuLeft/>
+        </div>
+        <div className="right col-10">
+          <Header/>
+          
+          <Routes>
+            <Route index path="users" element={<UserList />} />
+            <Route path="carriers" element={<CarriersList />} />
+            <Route path="carriers/edit-carrier" element={<CarrierItem />} />
+            <Route path="carriers/new-carrier" element={<CarrierItem />} />
+            <Route path="route" element={<Course />} />
+            <Route path="route/edit-route" element={<CourseItem />} />
+          </Routes>
+        </div>     
+      </div>    
+    </RootStoreProvider>
+
   );
 }
 

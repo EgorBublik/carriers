@@ -1,5 +1,12 @@
 export class UpdateCarrierDto {
-    name: string
+    firstname: string
+    secondname: string
+    contacFace: [
+        firstname: string,
+        secondname: string,
+        email: string,
+        phone: string
+    ]
     phone: string
     email: string
     description: string
