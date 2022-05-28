@@ -71,8 +71,6 @@ const CarrierItem = () => {
     }
 
     const onInputChange = (e) => {
-        console.log(e.target.name)
-
         setInputItem((prev) => ({...prev, [e.target.name]: e.target.value}))
     }
 
@@ -86,10 +84,8 @@ const CarrierItem = () => {
             route: routeItem,
             description: ''
         }
-        console.log('result: ', result)
 
         await createCarrier(result).then(() => console.log('succses'))
-        // console.log('result: ', result)
     }
 
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const HOST = "http://localhost:4000/carriers/"
+const HOST = "http://eb.tools-api.com/api/carriers"
 
 export const getCarriers = async () => {
   return await axios.get(HOST)
@@ -15,6 +15,6 @@ export const updateCarrier = async (carrier) => {
 }
 
 export const deleteCarrier = async (id) => {
-  return await axios.delete(`${HOST}${id}`)
+  return await axios.delete(`${HOST}/${id}`)
 }
 
