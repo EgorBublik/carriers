@@ -1,10 +1,12 @@
-import { CarrierStore } from "./carrierStore"
+import { CarrierStore } from "./carrier/carrierStore"
+import { RouteStore } from "./route/routeStore";
 import { useContext, createContext } from "react";
 
 export class RootStore {
     
     constructor() {    
         this.carrierStore = new CarrierStore(this)
+        this.routeStore = new RouteStore(this)
     }
 }
 

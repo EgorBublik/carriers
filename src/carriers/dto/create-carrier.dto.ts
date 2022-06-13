@@ -7,11 +7,7 @@ export class ContactFaceDto {
     phone: string
 }
 
-export class CheckboxItemDto {
-    type: string
-}
-
-export class RouteDto {
+export class RouteCarrierDto {
     departure: string
     price: string
     route: string
@@ -19,9 +15,10 @@ export class RouteDto {
 
 export class CreateCarrierDto {
     name: string
-    type: CheckboxItemDto[]
+    type
     contract: string
     contactFace: ContactFaceDto[]
-    route: RouteDto[]
+    route: RouteCarrierDto[]
     description: string
 }
+

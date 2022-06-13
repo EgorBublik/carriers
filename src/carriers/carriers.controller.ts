@@ -24,6 +24,7 @@ export class CarriersController {
     create(@Body() createCarrierDto: CreateCarrierDto): Promise<Carrier> {
         return this.carriersService.create(createCarrierDto)
     }
+  
 
     @Delete(':id')
     remove(@Param('id') id:string): Promise<Carrier> {

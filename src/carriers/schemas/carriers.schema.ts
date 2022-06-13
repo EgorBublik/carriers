@@ -22,7 +22,7 @@ export class ContactFace {
 } 
 
 @Schema()
-export class Route {
+export class RouteCarrier {
     @Prop()
     departure: string
 
@@ -33,11 +33,11 @@ export class Route {
     route: string
 }
 
-@Schema()
-export class CheckboxItem {
-    @Prop()
-    type: string
-}
+// @Schema()
+// export class CheckboxItem {
+//     @Prop()
+//     type: string
+// }
 
 
 @Schema()
@@ -57,14 +57,14 @@ export class Carrier {
     @Prop()
     description: string
     
-    @Prop([CheckboxItem])
-    type: CheckboxItem
+    @Prop()
+    type: []
     
     @Prop()
     contract: string
 
-    @Prop([Route])
-    route: Route[]
+    @Prop([RouteCarrier])
+    route: RouteCarrier[]
 }
 
 export const CarrierSchema = SchemaFactory.createForClass(Carrier)

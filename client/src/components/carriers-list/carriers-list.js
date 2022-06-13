@@ -6,15 +6,15 @@ import { useStores } from '../../store/rootstore';
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 
+
 const CarriersList = observer(() => {
     const [updateCarriers, setUpdateCarriers] = useState(0)
 
-    const handleUpdateCarriers = () => {
+    const handleUpdateCarriers = () => { 
         setUpdateCarriers((prevState) => prevState + 1)
     }
     const store = useStores()
     const carriers = store.carrierStore.carriers
-
 
     useEffect(() => {
         store.carrierStore.getCarriers()
@@ -44,7 +44,7 @@ const CarriersList = observer(() => {
             </div>
             <div className="carriers-list">
                 <div className="search">
-                    <input className="search-input form-control" type="search" placeholder="Search" aria-label="Search"/>
+                    <input className="search-input form-control" type="search" placeholder="Поиск" aria-label="Search"/>
                     <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass} />
                 </div>
                 <div className="carriers-table">
@@ -58,23 +58,22 @@ const CarriersList = observer(() => {
                             </tr>
                         </thead>
                         <tbody>
-                            {carriers.map((carrier) => {
+                            {carriers.map((carrier, index) => {
                                 return (<tr key={carrier._id}>
                                 <td>{carrier.name}</td>
                                 <td>{carrier.type.map((item) => {
-                                    return (
-                                        <div>{item.type}</div>
-                                        
-                                        )
-                                })}</td>
+                                    return ( 
+                                        <div> {item} </div>   
+                                    )})}
+                                </td>
                                 <td>{carrier.route.map((item) => {
                                     return (
-                                        item.route
+                                        <div>{item.departure} — {item.route}</div>
                                     )
                                 })}</td>
                                 <td>
-                                    <NavLink to="/carriers/edit-carrier">
-                                        <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>   
+                                    <NavLink to={`/carriers/edit-carrier/${index}`} >
+                                        <FontAwesomeIcon onClick={() => console.log(carrier._id)} className='fa-pencil' icon={faPencil}/>   
                                     </NavLink>
                                     <FontAwesomeIcon onClick={() => onClickRemove(carrier._id)} className='fa-trash-can' icon={faTrashCan}/>
                                 </td>

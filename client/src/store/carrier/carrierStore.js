@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import { getCarriers as getCariersAPI, deleteCarrier as deleteCarrierAPI} from "../components/api/api"
+import { getCarriers as getCariersAPI, deleteCarrier as deleteCarrierAPI} from "../../components/api/api"
 
 export class CarrierStore {
     

@@ -6,8 +6,8 @@ import UserList from '../user-list/UserList';
 import CarriersList from '../carriers-list/carriers-list';
 import CarrierItem from '../carrier-item/carrier-item';
 import { Routes, Route} from "react-router-dom";
-import LoginPage from '../login-page/login-page';
-import Course from '../course/course';
+// import LoginPage from '../login-page/login-page';
+import CourseList from '../course-list/course-list';
 import CourseItem from '../course-item/course-item';
 import { RootStoreProvider, RootStore } from '../../store/rootstore';
 
@@ -28,10 +28,11 @@ const App = () => {
           <Routes>
             <Route index path="users" element={<UserList />} />
             <Route path="carriers" element={<CarriersList />} />
-            <Route path="carriers/edit-carrier" element={<CarrierItem />} />
+            <Route path="carriers/edit-carrier/:itemIndex" element={<CarrierItem />} />
             <Route path="carriers/new-carrier" element={<CarrierItem />} />
-            <Route path="route" element={<Course />} />
-            <Route path="route/edit-route" element={<CourseItem />} />
+            <Route path="route" element={<CourseList />} /> 
+            <Route path="route/new-route" element={<CourseItem />} />
+            <Route path="route/edit-route/:itemIndex" element={<CourseItem />} />
           </Routes>
         </div>     
       </div>    
