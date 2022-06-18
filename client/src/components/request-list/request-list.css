@@ -1,10 +1,10 @@
-.routes-list {
+.request-list {
     border: 1px solid #dfe4e8;
     border-radius: 10px;
     padding: 15px;
     margin-top: 30px;
 }
 
-.add-route-btn {
+.add-request-btn {
     text-align: right;
 }

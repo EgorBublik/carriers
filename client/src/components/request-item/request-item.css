@@ -1,0 +1,27 @@
+.request-form-item {
+    margin: 10px 0;
+}
+
+.date-request {
+    margin: 10px 0;
+    padding: 0;
+}
+
+.city-request {
+    margin: 10px 0;
+    padding: 0;
+}
+
+.price-request {
+    margin: 10px 0;
+    padding: 0;
+}
+
+.weight-size-request {
+    margin: 10px 0;
+    padding: 0;
+}
+
+.btn-block button {
+    width: 80%
+}

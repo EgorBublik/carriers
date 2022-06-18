@@ -177,12 +177,11 @@ const CarrierItem = observer(() => {
                             </div>
                             <div className="add-btn col-6">
                             <button type="button" onClick={handleContactAddBtn} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactFaceModal">Добавить</button>
-                                <div className="modal fade" id="addContactFaceModal" tabIndex="-1" aria-labelledby="addContactFaceModalLabel" aria-hidden="true">
+                                <div className="modal fade" id="addContactFaceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="addContactFaceModalLabel" aria-hidden="true">
                                     <div className="modal-dialog">
                                         <div className="modal-content">
                                         <div className="modal-header">
                                             <h5 className="modal-title" id="addContactFaceModalLabel">Добавить контактное лицо</h5>
-                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         
                                         {contactFaceState.map((field, index) => (
@@ -268,12 +267,11 @@ const CarrierItem = observer(() => {
                         </div>
                         <div className="add-btn col-6">
                             <button type="button" onClick={handleRouteAddBtn} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRouteModal">Добавить</button>
-                            <div className="modal fade" id="addRouteModal" tabIndex="-1" aria-labelledby="addRouteModalLabel" aria-hidden="true">
+                            <div className="modal fade" id="addRouteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="addRouteModalLabel" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
                                         <div className="modal-header">
                                             <h5 className="modal-title" id="addRouteModalLabel">Добавить направление</h5>
-                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         {routeState.map((field, index) => (
                                         <>
@@ -339,13 +337,17 @@ const CarrierItem = observer(() => {
                     </table>
                 </div>
 
-                <div className="btn-block">
-                    <button type="submit" className="btn btn-success btn-block-item" onClick={handleSubmit(saveResult)} to="/carriers">
-                        Сохранить
-                    </button>
-                    <NavLink type="submit" className="btn btn-secondary btn-block-item" to="/carriers">
-                        Закрыть
-                    </NavLink>
+                <div className="btn-block row">
+                    <div className="col-5">
+                        <button type="submit" className="btn btn-success btn-block-item" onClick={handleSubmit(saveResult)}>
+                            Сохранить
+                        </button>
+                    </div>
+                    <div className="col-5">
+                            <button type='submit' className='btn btn-secondary btn-block-item' onClick={() => navigate('/carriers')}>
+                                Закрыть
+                            </button>
+                    </div>
                 </div>
             </form>
         </div>

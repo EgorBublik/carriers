@@ -31,8 +31,4 @@ export class RoutesService {
     
   }
 
-//   async update(id: string, routeDto: UpdateRouteDto): Promise<Route> {
-//     return this.routeModel.findByIdAndUpdate(id, routeDto, {new: true})
-// }
-
 }

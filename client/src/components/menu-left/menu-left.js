@@ -16,7 +16,7 @@ const MenuLeft = () => {
                 <NavLink className={({ isActive }) => (isActive ? 'menu-list-item active' : 'menu-list-item')} to="/users">Пользователи</NavLink>
                 <NavLink className={({ isActive }) => (isActive ? 'menu-list-item active' : 'menu-list-item')} to="/carriers">Перевозчики</NavLink>
                 <NavLink className={({ isActive }) => (isActive ? 'menu-list-item active' : 'menu-list-item')} to="/route">Направления</NavLink>
-                <NavLink className={({ isActive }) => (isActive ? 'menu-list-item active' : 'menu-list-item')} to="">Заявки</NavLink>
+                <NavLink className={({ isActive }) => (isActive ? 'menu-list-item active' : 'menu-list-item')} to="/request">Заявки</NavLink>
             </div>
         </div>
             

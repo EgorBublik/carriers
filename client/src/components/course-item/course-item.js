@@ -1,13 +1,11 @@
 import './course-item.css'
 import { createRoutes, updateRoute } from '../api/api'
 import { useForm, useFieldArray } from "react-hook-form";
-import RouteForm from './route-form/route-form';
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faX} from '@fortawesome/free-solid-svg-icons'
+import {RouteForm} from './RouteForm/RouteForm';
+
 import { observer } from 'mobx-react';
 import { useStores } from '../../store/rootstore'; 
-import { useParams, useNavigate, NavLink } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom';
 
 const CourseItem = observer(() => {
     const navigate = useNavigate()
@@ -28,7 +26,6 @@ const CourseItem = observer(() => {
             departure: "Bill", destination: "destination" 
         }
     });
-    
 
     const saveRoute = async (data) => {
         if (itemIndex) {
@@ -73,43 +70,24 @@ const CourseItem = observer(() => {
                 
                 <div className="synonym-group">
                     {routeState.map((item, index) => {
-                        return (
-                                <div key={item.id} className="row">
-                                    <div className="col-5">
-                                        <label className="form-label">Город отправки:</label>
-                                        <input 
-                                            {...register(`stop.${index}.departure`)} 
-                                            type="text" 
-                                            className="form-control"/>
-                                    </div>
-                                    <div className="col-5">
-                                        <label className="form-label">Пункт Назначения:</label>
-                                        <input 
-                                            {...register(`stop.${index}.destination`)} 
-                                            type="text" 
-                                            className="form-control"/>
-                                    </div>
-                                    <div className="col-1 course-item-delete">
-                                        <FontAwesomeIcon className='course-item-delete-icon' onClick={() => remove(index)} icon={faX} />
-                                    </div>
-                                </div>
-                        )
+                        return <RouteForm item ={item} register={register} index={index} remove={remove} />
                     })}
                 </div>
 
             </div>
-            <div className="course-item-save col-10">
+            <div className="course-item-save col-10 ">
                 <button type="button"
-                        className="btn btn-success" 
+                        className="btn btn-success btn-block-item" 
                         onClick={handleSubmit(saveRoute)}>
                             Сохранить
                 </button>
-                <NavLink type="submit" className="btn btn-secondary btn-block-item" to="/route">
-                    Закрыть
-                </NavLink>
+                    <button type="submit" className="btn btn-secondary btn-block-item" onClick={() => navigate('/route')}>
+                        Закрыть
+                    </button>
             </div>
         </div>
     )
 })
 
 export default CourseItem
+

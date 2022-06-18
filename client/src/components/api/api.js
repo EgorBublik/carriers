@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const HOSTCarriers = ""
 const HOSTRoutes = ""
+const HOSTRequest = ""
 
 export const getCarriers = async () => {
   return await axios.get(HOSTCarriers)
@@ -34,3 +35,21 @@ export const updateRoute = async (route) => {
 export const deleteRoute = async (id) => {
   return await axios.delete(`${HOSTRoutes}${id}`)
 }
+
+
+export const getRequests = async () => {
+  return await axios.get(HOSTRequest)
+}
+
+export const createRequest = async (request) => {
+  return await axios.post(`${HOSTRequest}`, request)
+}
+
+export const updateRequest = async (request) => {
+  return await axios.put(`${HOSTRequest}${request._id}`, request)
+}
+
+export const deleteRequest = async (id) => {
+  return await axios.delete(`${HOSTRequest}${id}`)
+}
+

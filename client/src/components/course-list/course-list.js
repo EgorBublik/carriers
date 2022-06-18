@@ -5,27 +5,50 @@ import { NavLink } from "react-router-dom";
 import { observer } from 'mobx-react';
 import { useStores } from '../../store/rootstore'; 
 import { useEffect, useState } from 'react';
+import Fuse from 'fuse.js'
 
 const CourseList = observer(() => {
-
+    
     const [updateRoutes, setUpdateRoutes] = useState(0)
 
     const handleUpdateRoutes = () => {
         setUpdateRoutes((prevState) => prevState + 1)
     }
+    
     const store = useStores()
     const routes = store.routeStore.routes
+
+    const fuse = new Fuse(routes, {
+        keys: [
+            'departure',
+            'destination',
+            'stop.destination'
+
+        ],    
+        threshold: 0.3
+    })
+    const [filterRoutesState, setFilterRoutesState] = useState([])
+
+    const handleSearch = (e) => {
+        if (e.target.value !== '') {
+            setFilterRoutesState(fuse.search(e.target.value).map(result => result.item))
+        } else {
+            setFilterRoutesState(routes)
+        }
+    }   
 
     useEffect(() => {
         store.routeStore.getRoutes()
     }, [updateRoutes])
 
+    useEffect(() => {
+        setFilterRoutesState(routes)
+    }, [routes])
+
     const onClickRemove = (id) => {
-        console.log(id)
         store.routeStore.removeRoute(id);
         handleUpdateRoutes();
     }
-    // console.log(routes)
     return (
         <div className="container">
             <div className="course-header"> 
@@ -33,19 +56,19 @@ const CourseList = observer(() => {
                     <div className="col-9">
                         <h3>Направления</h3>
                     </div>
-                    <div className="col-3 add-carrier-btn">
+                    <div className="col-3 add-route-btn">
                     <NavLink to="/route/new-route">
                         <button type="button" className="btn btn-primary">Новое направление</button>
                     </NavLink>
                     </div>
                 </div>
             </div>
-            <div className="carriers-list">
+            <div className="routes-list">
                 <div className="search">
-                    <input className="search-input form-control" type="search" placeholder="Поиск" aria-label="Search"/>
+                    <input className="search-input form-control" onChange={handleSearch} type="search" placeholder="Поиск" aria-label="Search"/>
                     <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass} />
                 </div>
-                <div className="carriers-table">
+                <div className="routes-table">
                     <table className=" table table-hover">
                         <thead>
                             <tr>
@@ -56,7 +79,7 @@ const CourseList = observer(() => {
                             </tr>
                         </thead>
                         <tbody>
-                            {routes.map((route, index) => {
+                            {filterRoutesState.map((route, index) => {
                                 return (
                                     <tr>
                                         <td>{route.departure}</td>
