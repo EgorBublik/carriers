@@ -96,7 +96,7 @@ const CarriersList = observer(() => {
                                         })}</td>
                                         <td>
                                             <NavLink to={`/carriers/edit-carrier/${index}`} >
-                                                <FontAwesomeIcon onClick={() => console.log(carrier._id)} className='fa-pencil' icon={faPencil}/>   
+                                                <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>   
                                             </NavLink>
                                             <FontAwesomeIcon onClick={() => onClickRemove(carrier._id)} className='fa-trash-can' icon={faTrashCan}/>
                                         </td>

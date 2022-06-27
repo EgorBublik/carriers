@@ -6,6 +6,13 @@
     padding-left: 24px;
 }
 
+.carrier-contract label {
+    padding-right: 20px;
+}
+.carrier-contract input {
+    margin-right: 5px;
+}
+
 .add-btn {
     text-align: right;
 }
@@ -32,4 +39,8 @@
 
 .btn-block-item:hover {
     transform: scale(1.05);
+}
+
+.modal-body input {
+    margin-bottom: 15px;
 }

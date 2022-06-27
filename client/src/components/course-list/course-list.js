@@ -81,17 +81,19 @@ const CourseList = observer(() => {
                         <tbody>
                             {filterRoutesState.map((route, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{route.departure}</td>
                                         <td>{route.destination}</td>
                                         <td>{route.stop.map((item, index) => {
                                                 if (route.stop.length - 1 === index) {
                                                     return (
-                                                        item.destination
+                                                        <>
+                                                            <span key={index}>{item.destination}</span>
+                                                        </>
                                                     )
                                                 } else {
                                                     return (
-                                                        `${item.destination}, `
+                                                        <span key={index}>{item.destination},</span>
                                                     )
                                                 }
                                             })}</td>

@@ -4,7 +4,7 @@ import {faX} from '@fortawesome/free-solid-svg-icons'
 export const RouteForm = ({item, register, index, remove}) => {
 
     return (
-        <div key={item.id} className="row">
+        <div key={item.id} className="row item-route">
             
             <div className="col-5">
                 <label className="form-label">Город отправки:</label>

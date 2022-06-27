@@ -25,6 +25,7 @@ const CarrierItem = observer(() => {
             ...carriers[itemIndex]
         }
     });
+    
     const { fields: contactFaceState, append: contactFaceAppend, update: contactFaceUpdate, remove: contactFaceRemove } = useFieldArray({
         control, 
         name: "contactFace",
@@ -169,97 +170,75 @@ const CarrierItem = observer(() => {
                             rows="9"></textarea>
                     </div>
                 </div>
-                <div className="carrier-info">
-                    <div className="contact-faces">
-                        <div className="contact-faces-header row">
-                            <div className="col-6">
-                                <h3>Контактные лица</h3>
-                            </div>
-                            <div className="add-btn col-6">
-                            <button type="button" onClick={handleContactAddBtn} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactFaceModal">Добавить</button>
-                                <div className="modal fade" id="addContactFaceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="addContactFaceModalLabel" aria-hidden="true">
-                                    <div className="modal-dialog">
-                                        <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title" id="addContactFaceModalLabel">Добавить контактное лицо</h5>
-                                        </div>
-                                        
-                                        {contactFaceState.map((field, index) => (
-                                        <>
-                                                {activeContactFormId === index   &&
-                                                <ContactFaceForm
-                                                key={field.id}
-                                                control={control}
-                                                update={contactFaceUpdate}
-                                                remove={contactFaceRemove}
-                                                index={index}
-                                                value={field}
-                                                />
-                                                }
-                                            </>
-                                        ))}
-
-
-                                        </div>
-                                    </div>
-                                </div>                            
-                            </div>
+    
+                <div className="carrier-info contact-faces">
+                    <div className="contact-faces-header row">
+                        <div className="col-6">
+                            <h3>Контактные лица</h3>
                         </div>
-                        
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                <th scope="col">Имя</th>
-                                <th scope="col">Фамилия</th>
-                                <th scope="col">Должность</th>
-                                <th scope="col">E-mail</th>
-                                <th scope="col">Телефон</th>
-                                <th scope="col"></th>
+                        <div className="add-btn col-6">
+                        <button type="button" onClick={handleContactAddBtn} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactFaceModal">Добавить</button>
+                            <div className="modal fade" id="addContactFaceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="addContactFaceModalLabel" aria-hidden="true">
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="addContactFaceModalLabel">Добавить контактное лицо</h5>
+                                    </div>
+                                    
+                                    {contactFaceState.map((field, index) => (
+                                    <>
+                                            {activeContactFormId === index   &&
+                                            <ContactFaceForm
+                                            key={field.id}
+                                            control={control}
+                                            update={contactFaceUpdate}
+                                            remove={contactFaceRemove}
+                                            index={index}
+                                            value={field}
+                                            />
+                                            }
+                                        </>
+                                    ))}
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Иван</td>
-                                    <td>Петров</td>
-                                    <td>Директор</td>
-                                    <td>petrov@mail.com</td>
-                                    <td>+375291111111</td>
-                                    <td>
-                                        <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>                                    
-                                        <FontAwesomeIcon className='fa-trash-can' icon={faTrashCan}/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Григорий</td>
-                                    <td>Сидоров</td>
-                                    <td>Менеджер</td>
-                                    <td>sidorov@mail.com</td>
-                                    <td>+375292222222</td>
-                                    <td>
-                                        <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>                                    
-                                        <FontAwesomeIcon className='fa-trash-can' icon={faTrashCan}/>
-                                    </td>
-                                </tr>
-                                {contactFaceState.map((item, index) => {
-                                    return (
-                                        <tr key={item.id}>
-                                            <td>{item.firstname}</td>
-                                            <td>{item.lastname}</td>
-                                            <td>{item.position}</td>
-                                            <td>{item.email}</td>
-                                            <td>{item.phone}</td>
-                                            <td>
-                                                <FontAwesomeIcon  data-bs-toggle="modal" data-bs-target="#addContactFaceModal" onClick={() => handleEditBtn('contact', index)} className='fa-pencil' icon={faPencil}/>                                    
-                                                <FontAwesomeIcon className='fa-trash-can' onClick={() => contactFaceRemove(index)} icon={faTrashCan}/>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table>
+
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
                     </div>
+                    
+                    <table className="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Фамилия</th>
+                            <th scope="col">Должность</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Телефон</th>
+                            <th scope="col"></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {contactFaceState.map((item, index) => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{item.firstname}</td>
+                                        <td>{item.lastname}</td>
+                                        <td>{item.position}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.phone}</td>
+                                        <td>
+                                            <FontAwesomeIcon  data-bs-toggle="modal" data-bs-target="#addContactFaceModal" onClick={() => handleEditBtn('contact', index)} className='fa-pencil' icon={faPencil}/>                                    
+                                            <FontAwesomeIcon className='fa-trash-can' onClick={() => contactFaceRemove(index)} icon={faTrashCan}/>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
                 </div>
+    
                 <div className="route">
                     <div className="route-header row">
                         <div className="col-6">
@@ -301,24 +280,6 @@ const CarrierItem = observer(() => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Москва</td>
-                                <td>Воронеж</td>
-                                <td>50</td>
-                                <td>
-                                    <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>                                    
-                                    <FontAwesomeIcon className='fa-trash-can' icon={faTrashCan}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Санкт-Петербург</td>
-                                <td>Магадан</td>
-                                <td>70</td>
-                                <td>
-                                    <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>                                    
-                                    <FontAwesomeIcon className='fa-trash-can' icon={faTrashCan}/>
-                                </td>
-                            </tr>
                             {routeState.map((item, index) => {
                                 return (
                                     <tr key={item.id}>
