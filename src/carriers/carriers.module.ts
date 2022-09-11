@@ -11,9 +11,8 @@ import { Carrier, CarrierSchema } from "./schemas/carriers.schema";
         MongooseModule.forFeature([
             {name: Carrier.name, schema: CarrierSchema}
         ])
-    ]
+    ],
+    exports: [CarriersService]
 })
 
-export class CarriersModule {
-
-}
+export class CarriersModule {}

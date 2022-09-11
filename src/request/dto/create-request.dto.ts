@@ -4,15 +4,24 @@
 // }
 
 export class CreateRequestDto {
-    arrival_city: string
-    arrival_date: string
+
+    
+    countryArrival: string
+    regionArrival: string
+    cityArrival: string
+
+    dateArrival: string
     comment: string
     currency: string
-    departure_city: string
-    departure_date: string
+
+    countryDeparture: string
+    regionDeparture: string
+    cityDeparture: string
+    
+    dateDeparture: string
     freight: string
-    name_cargo: string
+    nameCargo: string
     type: string[]
-    weight_cargo: string
-    size_cargo: string
+    weightCargo: string
+    sizeCargo: string
 }

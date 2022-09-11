@@ -13,13 +13,20 @@ export class CarriersService {
 
     }
 
-
     async getAll(): Promise<Carrier[]> {
         return this.carrierModel.find().exec()
     }
 
     async getById(id: string): Promise<Carrier> {
         return this.carrierModel.findById(id)
+    }
+
+    async getByAmoId(amoId: string): Promise<Carrier> {
+        return await this.carrierModel.findOne({amoId})
+    }
+
+    async getByAmoIds(amoIds: string[]): Promise<Carrier[]> {
+        return await Promise.all(amoIds.map(this.getByAmoId))
     }
 
     async create(carrierDto: CreateCarrierDto): Promise<Carrier> {

@@ -1,4 +1,3 @@
-
 export class ContactFaceDto {
     firstname: string
     lastname: string
@@ -8,9 +7,13 @@ export class ContactFaceDto {
 }
 
 export class RouteCarrierDto {
-    departure: string
-    price: string
-    route: string
+    typeRoute: string
+    countryDeparture: string
+    regionDeparture: string
+    cityDeparture: string
+    countryRoute: string
+    regionRoute: string
+    cityRoute: string
 }
 
 export class CreateCarrierDto {

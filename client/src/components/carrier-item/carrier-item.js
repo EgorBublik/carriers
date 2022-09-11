@@ -2,14 +2,16 @@ import './carrier-item.css'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTrashCan, faPencil} from '@fortawesome/free-solid-svg-icons'
 import { } from 'bootstrap'
-import { useState} from 'react'
+import { useState, useEffect } from 'react'
 import { useForm, useFieldArray } from "react-hook-form";
 import { createCarrier, updateCarrier } from '../api/api'
-import { useNavigate, NavLink, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ContactFaceForm from './contact-face-form/contact-face-form'
 import RouteForm from './route-form/route-form'
 import { observer } from 'mobx-react'
 import { useStores } from '../../store/rootstore'; 
+
+import Fuse from 'fuse.js'
 
 const CarrierItem = observer(() => {
     const {itemIndex} = useParams()   
@@ -18,6 +20,8 @@ const CarrierItem = observer(() => {
     const [activeRouteFormId, setActiveRouteFormId] = useState()
     const carriers = store.carrierStore.carriers
     const navigate = useNavigate()
+    const [filterCheckboxState, setfilterCheckboxState] = useState([])
+    const [check, setCheck] = useState([])
 
     
     const { control, register, handleSubmit } = useForm( {
@@ -38,10 +42,30 @@ const CarrierItem = observer(() => {
         defaultValues: {}
     });
     
+    const fuse = new Fuse(routeState, {
+        keys: [
+            'typeRoute'          
+        ],    
+        threshold: 0.3
+    })
+
+    useEffect(() => {
+        setfilterCheckboxState(routeState)
+    }, [routeState])
+
+    const handleFilter = (e) => {
+        console.log(e.target.value)
+        if (e.target.value === 'Все') {
+            setfilterCheckboxState(routeState)
+        } else {
+            setfilterCheckboxState(fuse.search(e.target.value).map(result => result.item))
+        }
+    }
+    
     const handleEditBtn = (func, index) => {
         switch (func) {
             case 'contact':
-                setActiveContactFormId(index)
+                setActiveContactFormId(index)   
                 break
             case 'route':
                 setActiveRouteFormId(index)
@@ -49,7 +73,7 @@ const CarrierItem = observer(() => {
                 default: return
         }
     }
-
+    
     const handleContactAddBtn = () => {
         contactFaceAppend({})
         setActiveContactFormId(contactFaceState.length)
@@ -93,8 +117,8 @@ const CarrierItem = observer(() => {
                                                 className="form-check-input"
                                                 {...register("type")} 
                                                 type="checkbox" 
-                                                value="Тип1" />
-                                            Тип1
+                                                value="Мал" />
+                                            Мал
                                         </label>
                                     </div>
                                     <div className="form-check form-check-inline">
@@ -104,8 +128,8 @@ const CarrierItem = observer(() => {
                                                 className="form-check-input"
                                                 {...register("type")} 
                                                 type="checkbox" 
-                                                value="Тип2" />
-                                            Тип2
+                                                value="Сцепка" />
+                                            Сцепка
                                         </label>
                                     </div>
                                 </div>
@@ -116,8 +140,8 @@ const CarrierItem = observer(() => {
                                                 className="form-check-input"
                                                 {...register("type")} 
                                                 type="checkbox" 
-                                                value="Тип3" />
-                                            Тип3
+                                                value="Реф" />
+                                            Реф
                                         </label>
                                     </div>
                                     <div className="form-check form-check-inline">
@@ -126,8 +150,20 @@ const CarrierItem = observer(() => {
                                                 className="form-check-input"
                                                 {...register("type")} 
                                                 type="checkbox" 
-                                                value="Тип4" />
-                                            Тип4
+                                                value="Контейнеры" />
+                                            Контейнеры
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="form-check-inline">
+                                        <label>
+                                            <input 
+                                                className="form-check-input"
+                                                {...register("type")} 
+                                                type="checkbox" 
+                                                value="Тент" />
+                                            Тент
                                         </label>
                                     </div>
                                 </div>
@@ -273,20 +309,28 @@ const CarrierItem = observer(() => {
                     <table className="table ">
                         <thead>
                             <tr>
+                                <th scope="col">
+                                    <div className="col-9">
+                                        <select className="form-select" onChange={handleFilter}>
+                                            <option value="Все">Все</option>
+                                            <option value="Экспорт">Экспорт</option>
+                                            <option value="Импорт">Импорт</option>
+                                        </select>
+                                    </div>
+                                </th>
                                 <th scope="col">Город выезда</th>
                                 <th scope="col">Направление</th>
-                                <th scope="col">Стоимость, р.</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {routeState.map((item, index) => {
+                            {filterCheckboxState.map((item, index) => {
                                 return (
                                     <tr key={item.id}>
-                                        <td>{item.departure}</td>
-                                        <td>{item.route}</td>
-                                        <td>{item.price}</td>
-                                        <td>
+                                        <td className='col-2'>{item.typeRoute}</td>
+                                        <td className='col-4'>{item.countryDeparture}, {item.regionDeparture}, {item.cityDeparture}</td>  
+                                        <td className='col-4'>{item.countryRoute}, {item.regionRoute}, {item.cityRoute}</td>
+                                        <td className='col-2'>
                                             <FontAwesomeIcon  data-bs-toggle="modal" data-bs-target="#addRouteModal" onClick={() => handleEditBtn('route', index)} className='fa-pencil' icon={faPencil}/>
                                             <FontAwesomeIcon className='fa-trash-can' onClick={() => routeRemove(index)} icon={faTrashCan}/>
                                         </td>
