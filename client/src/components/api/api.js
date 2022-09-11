@@ -17,6 +17,7 @@ export const updateCarrier = async (carrier) => {
 }
 
 export const deleteCarrier = async (id) => {
+  console.log('api: ', id)
   return await axios.delete(`${HOSTCarriers}${id}`)
 }
 

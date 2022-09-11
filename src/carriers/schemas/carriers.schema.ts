@@ -24,21 +24,26 @@ export class ContactFace {
 @Schema()
 export class RouteCarrier {
     @Prop()
-    departure: string
-
+    typeRoute: string
+   
     @Prop()
-    price: string
-
+    countryDeparture: string
+    
     @Prop()
-    route: string
+    regionDeparture: string
+    
+    @Prop()
+    cityDeparture: string
+    
+    @Prop()
+    countryRoute: string
+    
+    @Prop()
+    regionRoute: string
+    
+    @Prop()
+    cityRoute: string
 }
-
-// @Schema()
-// export class CheckboxItem {
-//     @Prop()
-//     type: string
-// }
-
 
 @Schema()
 export class Carrier {

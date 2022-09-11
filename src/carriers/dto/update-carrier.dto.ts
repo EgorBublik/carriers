@@ -10,5 +10,13 @@ export class UpdateCarrierDto {
     phone: string
     email: string
     description: string
-    route: string
+    route: [
+        typeRoute: string,
+        countryDeparture: string,
+        regionDeparture: string,
+        cityDeparture: string,
+        countryRoute: string,
+        regionRoute: string,
+        cityRoute: string
+    ]
 }

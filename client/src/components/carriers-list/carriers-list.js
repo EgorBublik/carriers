@@ -91,7 +91,7 @@ const CarriersList = observer(() => {
                                         </td>
                                         <td>{carrier.route.map((item, index) => {
                                             return (
-                                                <div key={index}>{item.departure} — {item.route}</div>
+                                                <div key={index}>{item.cityDeparture} — {item.cityRoute}</div>
                                             )
                                         })}</td>
                                         <td>

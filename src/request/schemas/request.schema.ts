@@ -6,41 +6,50 @@ export type RequestDocument = Request & Document
 @Schema()
 export class Request {
     @Prop()
-    arrival_city: string
+    countryArrival: string
     
     @Prop()
-    arrival_date: string
+    regionArrival: string
+    
+    @Prop()
+    cityArrival: string
+
+    @Prop()
+    dateArrival: string
     
     @Prop()
     comment: string
     
     @Prop()
     currency: string
+
+    @Prop()
+    countryDeparture: string
     
     @Prop()
-    departure_city: string
+    regionDeparture: string
     
     @Prop()
-    departure_date: string
+    cityDeparture: string
+    
+    @Prop()
+    dateDeparture: string
     
     @Prop()
     freight: string
     
     @Prop()
-    name_cargo: string
-
-    @Prop()
-    weight_cargo: string
-
-    @Prop()
-    size_cargo: string
-
+    nameCargo: string
+    
+    
     @Prop([String])
     type: string[]
 
-
-    // @Prop([Stop]) 
-    // stop: Stop[]
+    @Prop()
+    weightCargo: string
+    
+    @Prop()
+    sizeCargo: string
 }
 
 export const RequestSchema = SchemaFactory.createForClass(Request)

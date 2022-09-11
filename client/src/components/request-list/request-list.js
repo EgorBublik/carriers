@@ -19,8 +19,12 @@ const RequestList = observer(() => {
 
     const fuse = new Fuse(requests, {
         keys: [
-            'departure_city',
-            'arrival_city'
+            'countryDeparture',
+            'regionDeparture',
+            'cityDeparture',
+            'countryArrival',
+            'regionArrival',   
+            'cityArrival'
             
 
         ],    
@@ -74,9 +78,9 @@ const RequestList = observer(() => {
                         <thead>
                             <tr>
                                 <th>Дата</th>
-                                <th>Город загрузки</th>
-                                <th>Город выгрузки</th>
-                                <th>Наименование груза</th>
+                                <th>Загрузка</th>
+                                <th>Выгрузка</th>
+                                <th>Груз</th>
                                 <th>Вес / Объём</th>
                                 <th>Типы А/М</th>
                                 <th>Сумма фрахта</th>
@@ -88,11 +92,11 @@ const RequestList = observer(() => {
                             {filterRequestsState.map((request, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{request.departure_date} - {request.arrival_date}</td>
-                                        <td>{request.departure_city}</td>
-                                        <td>{request.arrival_city}</td>
-                                        <td>{request.name_cargo}</td>
-                                        <td>{request.weight_cargo} / {request.size_cargo}</td>
+                                        <td>{request.dateDeparture} - {request.dateArrival}</td>
+                                        <td>{request.countryDeparture}, {request.regionDeparture}, {request.cityDeparture}</td>
+                                        <td>{request.countryArrival}, {request.regionArrival}, {request.cityArrival}</td>
+                                        <td>{request.nameCargo}</td>
+                                        <td>{request.weightCargo} / {request.sizeCargo}</td>
                                         <td>{request.type.map((item) => {
                                             return (
                                                 <div>{item}</div>

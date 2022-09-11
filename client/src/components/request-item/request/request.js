@@ -5,38 +5,60 @@ const Request = ({register, handleSubmit, saveRequest, navigate}) => {
                 <div className="col-5">
                     <label className="form-label h6">Первая дата:</label>
                     <input
-                        {...register(`departure_date`)}
+                        {...register(`dateDeparture`)}
                         type="text"
                         className="form-control" />
                 </div>
                 <div className="col-5">
                     <label className="form-label h6">Вторая дата:</label>
                     <input
-                        {...register(`arrival_date`)}
+                        {...register(`dateArrival`)}
                         type="text"
                         className="form-control" />
                 </div>
             </div>
             <div className="city-request row">
                 <div className="col-5">
-                    <label className="form-label h6">Город загрузки:</label>
+                    <label className="form-label h6">Загрузка:</label>
                     <input
-                        {...register(`departure_city`)}
+                        {...register(`countryDeparture`)}
                         type="text"
-                        className="form-control" />
+                        className="form-control mb-2"
+                        placeholder="Страна" />
+                    <input
+                        {...register(`regionDeparture`)}
+                        type="text"
+                        className="form-control mb-2" 
+                        placeholder="Область"/>
+                    <input
+                        {...register(`cityDeparture`)}
+                        type="text"
+                        className="form-control mb-2" 
+                        placeholder="Город"/>
                 </div>
                 <div className="col-5">
-                    <label className="form-label h6">Город выгрузки:</label>
+                    <label className="form-label h6">Выгрузка:</label>
                     <input
-                        {...register(`arrival_city`)}
+                        {...register(`countryArrival`)}
                         type="text"
-                        className="form-control" />
+                        className="form-control mb-2"
+                        placeholder="Страна" />
+                    <input
+                        {...register(`regionArrival`)}
+                        type="text"
+                        className="form-control mb-2" 
+                        placeholder="Область"/>
+                    <input
+                        {...register(`cityArrival`)}
+                        type="text"
+                        className="form-control mb-2" 
+                        placeholder="Город"/>
                 </div>
             </div>
             <div className='name-request request-form-item col-10'>
                 <label className="form-label h6">Наименование груза:</label>
                 <input
-                    {...register(`name_cargo`)}
+                    {...register(`nameCargo`)}
                     type="text"
                     className="form-control" />
             </div>
@@ -44,14 +66,14 @@ const Request = ({register, handleSubmit, saveRequest, navigate}) => {
                 <div className="col-5">
                     <label className="form-label h6">Вес груза:</label>
                     <input
-                        {...register(`weight_cargo`)}
+                        {...register(`weightCargo`)}
                         type="text"
                         className="form-control" />
                 </div>
                 <div className="col-5">
                     <label className="form-label h6">Объем груза:</label>
                     <input
-                        {...register(`size_cargo`)}
+                        {...register(`sizeCargo`)}
                         type="text"
                         className="form-control" />
                 </div>
@@ -64,8 +86,8 @@ const Request = ({register, handleSubmit, saveRequest, navigate}) => {
                             className="form-check-input"
                             {...register("type")}
                             type="checkbox"
-                            value="Тип1" />
-                        Тип1
+                            value="Мал" />
+                        Мал
                     </label>
                 </div>
                 <div className="form-check form-check-inline">
@@ -74,8 +96,8 @@ const Request = ({register, handleSubmit, saveRequest, navigate}) => {
                             className="form-check-input"
                             {...register("type")}
                             type="checkbox"
-                            value="Тип2" />
-                        Тип2
+                            value="Сцепка" />
+                        Сцепка
                     </label>
                 </div>
                 <div className="form-check form-check-inline">
@@ -84,8 +106,8 @@ const Request = ({register, handleSubmit, saveRequest, navigate}) => {
                             className="form-check-input"
                             {...register("type")}
                             type="checkbox"
-                            value="Тип3" />
-                        Тип3
+                            value="Реф" />
+                        Реф
                     </label>
                 </div>
                 <div className="form-check form-check-inline">
@@ -94,8 +116,18 @@ const Request = ({register, handleSubmit, saveRequest, navigate}) => {
                             className="form-check-input"
                             {...register("type")}
                             type="checkbox"
-                            value="Тип4" />
-                        Тип4
+                            value="Контейнеры" />
+                        Контейнеры
+                    </label>
+                </div>
+                <div className="form-check form-check-inline">
+                    <label>
+                        <input
+                            className="form-check-input"
+                            {...register("type")}
+                            type="checkbox"
+                            value="Тент" />
+                        Тент
                     </label>
                 </div>
             </div>
