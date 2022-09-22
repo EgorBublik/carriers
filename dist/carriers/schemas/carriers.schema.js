@@ -16,11 +16,7 @@ let ContactFace = class ContactFace {
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], ContactFace.prototype, "firstname", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], ContactFace.prototype, "lastname", void 0);
+], ContactFace.prototype, "name", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -31,7 +27,7 @@ __decorate([
 ], ContactFace.prototype, "position", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], ContactFace.prototype, "phone", void 0);
 ContactFace = __decorate([
     (0, mongoose_1.Schema)()
@@ -81,14 +77,6 @@ __decorate([
     (0, mongoose_1.Prop)([ContactFace]),
     __metadata("design:type", ContactFace)
 ], Carrier.prototype, "contactFace", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Carrier.prototype, "phone", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Carrier.prototype, "email", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)

@@ -9,25 +9,18 @@ import Fuse from 'fuse.js'
 
 const CarriersList = observer(() => {
     
-    const [filterKeys, setFilterKeys ] = useState(['name'])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [carriersPerPage] = useState(7)
+    const [filterKeys] = useState(['name'])
     const [updateCarriers, setUpdateCarriers] = useState(0)
+    const [filterCarriersState, setFilterCarriersState] = useState([])
+    
+    const [prevDisActive, setPrevDisActive] = useState(false)
+    const [nextDisActive, setNextDisActive] = useState(true)
+    
     const store = useStores()
     const carriers = store.carrierStore.carriers
     
-    const fuse = new Fuse(carriers, {
-        keys: filterKeys,    
-        threshold: 0.3
-    })
-    const [filterCarriersState, setFilterCarriersState] = useState([])
-    
-    const handleSearch = (e) => {
-        if (e.target.value !== '') {
-            setFilterCarriersState(fuse.search(e.target.value).map(result => result.item))
-        } else {
-            setFilterCarriersState(carriers)
-        }
-    }   
-
     useEffect(() => {
         store.carrierStore.getCarriers()
     }, [updateCarriers])
@@ -36,16 +29,71 @@ const CarriersList = observer(() => {
         setFilterCarriersState(carriers)
     }, [carriers])
 
+    const fuse = new Fuse(carriers, {
+        keys: filterKeys,    
+        threshold: 0.3
+    })
+    
+    const handleSearch = (e) => {
+        if (e.target.value !== '') {
+            setFilterCarriersState(fuse.search(e.target.value).map(result => result.item))
+        } else {
+            setFilterCarriersState(carriers)
+        }
+    } 
+    
     const handleUpdateCarriers = () => { 
         setUpdateCarriers((prevState) => prevState + 1)
     }
     
     const onClickRemove = (id) => {
-        console.log(id)
         store.carrierStore.removeCarrier(id);
         handleUpdateCarriers();
     }
 
+    const lastCarriersIndex = currentPage * carriersPerPage
+    const firstCarriersIndex = lastCarriersIndex - carriersPerPage
+    const currentCarriers = filterCarriersState.slice(firstCarriersIndex, lastCarriersIndex)
+    const pageNumbers = []
+       
+    for (let i = 1; i<= Math.ceil(filterCarriersState.length / carriersPerPage); i++) {
+        pageNumbers.push(i)
+    }
+
+    const checkDisActive = () => {
+        switch (currentPage) {
+            case 1 :
+                setPrevDisActive(false)    
+                setNextDisActive(true)
+                break
+            case pageNumbers.length : 
+                setPrevDisActive(true)
+                setNextDisActive(false)
+                break
+            default:
+                setPrevDisActive(true)
+                setNextDisActive(true)
+        }
+    }
+    
+    const paginate = (pageNumber) => {
+        checkDisActive()
+        setCurrentPage(pageNumber)
+    }
+
+    const nextPage = () => {
+        checkDisActive()
+        if (currentPage !== pageNumbers.length) {
+            setCurrentPage(prev => prev + 1)
+        }
+    }
+    
+    const prevPage = () => {
+        checkDisActive()
+        if (currentPage !== 1) {
+            setCurrentPage(prev => prev - 1)
+        }
+    }
   
     return (
         <div className="container">
@@ -74,13 +122,11 @@ const CarriersList = observer(() => {
                             <tr>
                                 <th>Название</th>
                                 <th>Типы АМ</th>
-                                <th>Направления</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filterCarriersState.map((carrier, index) => {
-                                
+                            {currentCarriers.map((carrier, index) => {
                                 return (
                                     <tr key={carrier._id}>
                                         <td>{carrier.name}</td>
@@ -89,13 +135,8 @@ const CarriersList = observer(() => {
                                                 <div key={item}> {item} </div>   
                                             )})}
                                         </td>
-                                        <td>{carrier.route.map((item, index) => {
-                                            return (
-                                                <div key={index}>{item.cityDeparture} — {item.cityRoute}</div>
-                                            )
-                                        })}</td>
                                         <td>
-                                            <NavLink to={`/carriers/edit-carrier/${index}`} >
+                                            <NavLink to={`/carriers/edit-carrier/${currentPage == 1 ? index : (index + (carriersPerPage * (currentPage - 1)))}`} >
                                                 <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>   
                                             </NavLink>
                                             <FontAwesomeIcon onClick={() => onClickRemove(carrier._id)} className='fa-trash-can' icon={faTrashCan}/>
@@ -106,6 +147,40 @@ const CarriersList = observer(() => {
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div className='carriers-pagination'>
+                <ul className='pagination'>
+                    <li className={currentPage !== 1 ? 'page-item' : 'page-item disabled'}>
+                        <a className="page-link" onClick={prevPage}>Prev</a>
+                    </li>
+                    {
+                        pageNumbers.map(number => {
+                            if (currentPage === number)
+                            {
+                                return (
+                                    <li className='page-item active' key={number} onClick={() => paginate(number)}>
+                                        <a className='page-link' onClick={() => paginate(number)}>
+                                            {number}
+                                        </a>
+                                    </li>
+                                )
+                                
+                            } else {
+                                return (
+                                    <li className='page-item' key={number} onClick={() => paginate(number)}>
+                                        <a className='page-link' onClick={() => paginate(number)}>
+                                            {number}
+                                        </a>
+                                    </li>
+                                )
+                            }
+                            
+                        })
+                    }
+                    <li className={currentPage !== pageNumbers.length  ? 'page-item' : 'page-item disabled'}>
+                        <a className="page-link" onClick={nextPage}>Next</a>
+                    </li>
+                </ul>
             </div>
         </div>
         

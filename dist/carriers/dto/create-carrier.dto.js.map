@@ -1,1 +1,1 @@
-{"version":3,"file":"create-carrier.dto.js","sourceRoot":"","sources":["../../../src/carriers/dto/create-carrier.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,cAAc;CAM1B;AAND,wCAMC;AAED,MAAa,eAAe;CAQ3B;AARD,0CAQC;AAED,MAAa,gBAAgB;CAO5B;AAPD,4CAOC"}
+{"version":3,"file":"create-carrier.dto.js","sourceRoot":"","sources":["../../../src/carriers/dto/create-carrier.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,cAAc;CAK1B;AALD,wCAKC;AAED,MAAa,eAAe;CAQ3B;AARD,0CAQC;AAED,MAAa,gBAAgB;CAO5B;AAPD,4CAOC"}

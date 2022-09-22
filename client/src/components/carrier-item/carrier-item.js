@@ -21,8 +21,6 @@ const CarrierItem = observer(() => {
     const carriers = store.carrierStore.carriers
     const navigate = useNavigate()
     const [filterCheckboxState, setfilterCheckboxState] = useState([])
-    const [check, setCheck] = useState([])
-
     
     const { control, register, handleSubmit } = useForm( {
         defaultValues: {
@@ -54,7 +52,6 @@ const CarrierItem = observer(() => {
     }, [routeState])
 
     const handleFilter = (e) => {
-        console.log(e.target.value)
         if (e.target.value === 'Все') {
             setfilterCheckboxState(routeState)
         } else {
@@ -70,7 +67,7 @@ const CarrierItem = observer(() => {
             case 'route':
                 setActiveRouteFormId(index)
                 break
-                default: return
+            default: return
         }
     }
     
@@ -222,16 +219,16 @@ const CarrierItem = observer(() => {
                                     </div>
                                     
                                     {contactFaceState.map((field, index) => (
-                                    <>
+                                        <>
                                             {activeContactFormId === index   &&
-                                            <ContactFaceForm
-                                            key={field.id}
-                                            control={control}
-                                            update={contactFaceUpdate}
-                                            remove={contactFaceRemove}
-                                            index={index}
-                                            value={field}
-                                            />
+                                                <ContactFaceForm
+                                                    key={field.id}
+                                                    control={control}
+                                                    update={contactFaceUpdate}
+                                                    remove={contactFaceRemove}
+                                                    index={index}
+                                                    value={field}
+                                                />
                                             }
                                         </>
                                     ))}
@@ -246,13 +243,10 @@ const CarrierItem = observer(() => {
                     <table className="table">
                         <thead>
                             <tr>
-                            <th scope="col">Имя</th>
-                            <th scope="col">Фамилия</th>
-                            <th scope="col">Должность</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Телефон</th>
-                            <th scope="col"></th>
-
+                                <th scope="col">Имя</th>
+                                <th scope="col">Должность</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Телефон</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -260,10 +254,15 @@ const CarrierItem = observer(() => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.firstname}</td>
-                                        <td>{item.lastname}</td>
                                         <td>{item.position}</td>
                                         <td>{item.email}</td>
-                                        <td>{item.phone}</td>
+                                        <td>{item.phone?.map((element) => {
+                                            return (
+                                                <div>{element}</div>
+                                            )
+                                        })}</td>
+
+
                                         <td>
                                             <FontAwesomeIcon  data-bs-toggle="modal" data-bs-target="#addContactFaceModal" onClick={() => handleEditBtn('contact', index)} className='fa-pencil' icon={faPencil}/>                                    
                                             <FontAwesomeIcon className='fa-trash-can' onClick={() => contactFaceRemove(index)} icon={faTrashCan}/>
@@ -290,16 +289,18 @@ const CarrierItem = observer(() => {
                                         </div>
                                         {routeState.map((field, index) => (
                                         <>
-                                                {activeRouteFormId === index   &&
+                                            {activeRouteFormId === index   &&
                                                 <RouteForm
-                                                key={field.id}
-                                                control={control}
-                                                update={routeUpdate}
-                                                remove={routeRemove}
-                                                index={index}
-                                                value={field}
-                                                />}
-                                            </>
+                                                    key={field.id}
+                                                    control={control}
+                                                    update={routeUpdate}
+                                                    remove={routeRemove}
+                                                    index={index}
+                                                    value={field}
+                                                    typeRouteClass={field.typeRoute}
+                                                />
+                                            }
+                                        </>
                                         ))}
                                     </div>
                                 </div>
@@ -328,8 +329,16 @@ const CarrierItem = observer(() => {
                                 return (
                                     <tr key={item.id}>
                                         <td className='col-2'>{item.typeRoute}</td>
-                                        <td className='col-4'>{item.countryDeparture}, {item.regionDeparture}, {item.cityDeparture}</td>  
-                                        <td className='col-4'>{item.countryRoute}, {item.regionRoute}, {item.cityRoute}</td>
+                                        <td className='col-4'>
+                                            {item.countryDeparture} 
+                                            {(item.regionDeparture !== '' && item.countryDeparture !== '') ? `, ${item.regionDeparture}` : item.regionDeparture}
+                                            {(item.cityDeparture !== '' && (item.regionDeparture !== '' || item.countryDeparture !=='')) ? `, ${item.cityDeparture}` : item.cityDeparture}
+                                        </td>  
+                                        <td className='col-4'>
+                                            {item.countryRoute} 
+                                            {(item.regionRoute !== '' && item.countryRoute) ? `, ${item.regionRoute}` : item.regionRoute} 
+                                            {(item.cityRoute !== '' && (item.regionRoute !== '' || item.countryRoute)) ? `, ${item.cityRoute}` : item.cityRoute}
+                                        </td>
                                         <td className='col-2'>
                                             <FontAwesomeIcon  data-bs-toggle="modal" data-bs-target="#addRouteModal" onClick={() => handleEditBtn('route', index)} className='fa-pencil' icon={faPencil}/>
                                             <FontAwesomeIcon className='fa-trash-can' onClick={() => routeRemove(index)} icon={faTrashCan}/>

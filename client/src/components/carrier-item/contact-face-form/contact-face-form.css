@@ -1,0 +1,14 @@
+.phone-group {
+    margin-top: 10px;
+}
+
+.phone-item-delete {
+    padding: 0;
+}
+.phone-item-delete-icon {
+    position: relative;
+    top: 25%;
+    color: red;
+    cursor: pointer;
+    padding-right: 25px;
+}

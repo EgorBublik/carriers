@@ -1,11 +1,10 @@
 export class ContactFaceDto {
-    firstname: string
-    lastname: string
+    name: string
     position: string
     email: string
-    phone: string
+    phone
 }
-
+    
 export class RouteCarrierDto {
     typeRoute: string
     countryDeparture: string

@@ -6,6 +6,7 @@
 .course-item-delete {
     padding: 0;
 }
+
 .course-item-delete-icon {
     position: relative;
     top: 55%;
@@ -16,6 +17,7 @@
 .course-item-save {
     text-align: center;
 }
+
 .course-item-save button {
     width: 40%;
 }

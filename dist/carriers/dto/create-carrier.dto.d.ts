@@ -1,9 +1,8 @@
 export declare class ContactFaceDto {
-    firstname: string;
-    lastname: string;
+    name: string;
     position: string;
     email: string;
-    phone: string;
+    phone: any;
 }
 export declare class RouteCarrierDto {
     typeRoute: string;

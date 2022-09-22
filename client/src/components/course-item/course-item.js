@@ -22,15 +22,12 @@ const CourseItem = observer(() => {
     const { fields: routeState, append, remove } = useFieldArray({
         control, 
         name: "stop",
-        defaultValues: {
-            departure: "Bill", destination: "destination" 
-        }
+        defaultValues: {}
     });
 
     const saveRoute = async (data) => {
         if (itemIndex) {
             await updateRoute(data)
-            console.log(data)
         } else {
             await createRoutes(data).then(() => console.log('succses'))
         }
