@@ -9,11 +9,10 @@
 import { Document } from 'mongoose';
 export declare type CarrierDocument = Carrier & Document;
 export declare class ContactFace {
-    firstname: string;
-    lastname: string;
+    name: string;
     email: string;
     position: string;
-    phone: string;
+    phone: [];
 }
 export declare class RouteCarrier {
     typeRoute: string;
@@ -27,8 +26,6 @@ export declare class RouteCarrier {
 export declare class Carrier {
     name: string;
     contactFace: ContactFace;
-    phone: string;
-    email: string;
     description: string;
     type: [];
     contract: string;

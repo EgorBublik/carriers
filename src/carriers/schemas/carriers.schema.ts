@@ -6,10 +6,7 @@ export type CarrierDocument = Carrier & Document
 @Schema() 
 export class ContactFace {
     @Prop()
-    firstname: string
-
-    @Prop()
-    lastname: string
+    name: string
 
     @Prop()
     email: string
@@ -18,7 +15,7 @@ export class ContactFace {
     position: string
 
     @Prop()
-    phone: string
+    phone: []
 } 
 
 @Schema()
@@ -52,12 +49,6 @@ export class Carrier {
 
     @Prop([ContactFace])
     contactFace: ContactFace
-
-    @Prop()
-    phone: string
-
-    @Prop()
-    email: string
 
     @Prop()
     description: string

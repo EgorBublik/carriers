@@ -43,10 +43,17 @@ table tr {
 
 .search-input {
     padding-left: 40px;
+    text-align: center;
+    padding: auto;
 }
 
 .search-icon {
     position: absolute;
     top: 10px;
     padding-left: 10px;
+}
+
+.pagination {
+    margin-top: 20px;
+    justify-content: center;
 }

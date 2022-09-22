@@ -44,3 +44,7 @@
 .modal-body input {
     margin-bottom: 15px;
 }
+
+.type-route-select {
+    padding: 10px 1rem 0 1rem;
+}
