@@ -13,11 +13,12 @@ const mongoose_1 = require("@nestjs/mongoose");
 const routes_module_1 = require("./routes/routes.module");
 const requests_module_1 = require("./request/requests.module");
 const amocrm_module_1 = require("./amo-crm/amocrm.module");
+const messagio_module_1 = require("./messaggio/messagio.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [carriers_module_1.CarriersModule, amocrm_module_1.AmoCrmModule, routes_module_1.RoutesModule, requests_module_1.RequestsModule, mongoose_1.MongooseModule.forRoot('mongodb+srv://EgorBublik1:1q2w3e@cluster0.yqm8y.mongodb.net/Carriers?retryWrites=true&w=majority')],
+        imports: [carriers_module_1.CarriersModule, amocrm_module_1.AmoCrmModule, routes_module_1.RoutesModule, messagio_module_1.MessaggioModule, requests_module_1.RequestsModule, mongoose_1.MongooseModule.forRoot('mongodb+srv://EgorBublik1:1q2w3e@cluster0.yqm8y.mongodb.net/Carriers?retryWrites=true&w=majority')],
         controllers: [],
         providers: [],
     })

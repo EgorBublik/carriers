@@ -1,11 +1,4 @@
-// export class StopDto {
-//     city: ''
-//     test: ''
-// }
-
 export class CreateRequestDto {
-
-    
     countryArrival: string
     regionArrival: string
     cityArrival: string

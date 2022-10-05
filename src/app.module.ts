@@ -4,10 +4,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { RoutesModule } from './routes/routes.module';
 import { RequestsModule } from './request/requests.module';
 import { AmoCrmModule } from './amo-crm/amocrm.module';
+import { MessaggioModule } from './messaggio/messagio.module'
 
 
 @Module({
-  imports: [CarriersModule, AmoCrmModule, RoutesModule, RequestsModule, MongooseModule.forRoot('')],
+  imports: [CarriersModule, AmoCrmModule, RoutesModule, MessaggioModule, RequestsModule, MongooseModule.forRoot('')],
   controllers: [],
   providers: [],
 })

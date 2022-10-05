@@ -3,8 +3,8 @@ import MenuLeft from '../menu-left/menu-left';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from '../header/Header';
 import UserList from '../user-list/UserList';
-import CarriersList from '../carriers-list/carriers-list';
-import CarrierItem from '../carrier-item/carrier-item';
+import CarriersList from '../CarriersList/CarriersList';
+import CarrierItem from '../CarrierItem/CarrierItem';
 import { Routes, Route} from "react-router-dom";
 // import LoginPage from '../login-page/login-page';
 import CourseList from '../course-list/course-list';

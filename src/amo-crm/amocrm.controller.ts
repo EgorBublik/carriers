@@ -5,7 +5,7 @@ import { forwardRef, Inject } from '@nestjs/common';
 export const AMO_CLIENT = {
     domain: "radiancedir.amocrm.ru",
     client_id: "c96b6288-a5b7-4dee-972f-b75aa5fbda24",
-    client_secret: "zJB0deBijY53aTknq467TC326GpMiZjMyUekGAzPS2NZIXioiDKGnqRyoNoa72Dv",
+    client_secret: "",
     redirect_uri: "https://radiance.tools-api.com/api/get_token.php"
 }
 

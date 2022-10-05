@@ -1,11 +1,11 @@
-import './carriers-list.css'
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faTrashCan, faPencil, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
-import { NavLink } from "react-router-dom";
+import { observer } from 'mobx-react';
 import { useStores } from '../../store/rootstore'; 
 import { useEffect, useState } from 'react';
-import { observer } from 'mobx-react';
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTrashCan, faPencil, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import Fuse from 'fuse.js'
+import './CarriersList.css'
 
 const CarriersList = observer(() => {
     
@@ -14,9 +14,6 @@ const CarriersList = observer(() => {
     const [filterKeys] = useState(['name'])
     const [updateCarriers, setUpdateCarriers] = useState(0)
     const [filterCarriersState, setFilterCarriersState] = useState([])
-    
-    const [prevDisActive, setPrevDisActive] = useState(false)
-    const [nextDisActive, setNextDisActive] = useState(true)
     
     const store = useStores()
     const carriers = store.carrierStore.carriers
@@ -60,36 +57,17 @@ const CarriersList = observer(() => {
         pageNumbers.push(i)
     }
 
-    const checkDisActive = () => {
-        switch (currentPage) {
-            case 1 :
-                setPrevDisActive(false)    
-                setNextDisActive(true)
-                break
-            case pageNumbers.length : 
-                setPrevDisActive(true)
-                setNextDisActive(false)
-                break
-            default:
-                setPrevDisActive(true)
-                setNextDisActive(true)
-        }
-    }
-    
     const paginate = (pageNumber) => {
-        checkDisActive()
         setCurrentPage(pageNumber)
     }
 
     const nextPage = () => {
-        checkDisActive()
         if (currentPage !== pageNumbers.length) {
             setCurrentPage(prev => prev + 1)
         }
     }
     
     const prevPage = () => {
-        checkDisActive()
         if (currentPage !== 1) {
             setCurrentPage(prev => prev - 1)
         }

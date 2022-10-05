@@ -29,7 +29,7 @@ const CourseItem = observer(() => {
         if (itemIndex) {
             await updateRoute(data)
         } else {
-            await createRoutes(data).then(() => console.log('succses'))
+            await createRoutes(data)
         }
         navigate("/route")
     }

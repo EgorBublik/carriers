@@ -26,18 +26,28 @@ const RequestItem = observer(() => {
 
     useEffect(() => {
         setIsActiveSearch('new-request')
-        console.log('new')
         if (itemIndex) {
             setIsActiveSearch('edit-request')
-            console.log('edit')
         }
     }, [updatesRequest])
     
     useEffect(() => {
         if (itemIndex) {
             const types = requests[itemIndex].type  
-            setFilterCarriers(carriers.filter((item) => item.type.some((type) => types.includes(type))))
-
+            const countryDeparture = requests[itemIndex].countryDeparture
+            const countryArrival = requests[itemIndex].countryArrival
+            if ( countryArrival == 'РБ' && countryDeparture == 'РБ') {
+                setFilterCarriers(carriers
+                    .filter((item) => item.type.some((type) => types.includes(type)))
+                    .filter((item) => item.route.some((routeItem) => countryDeparture.includes(routeItem.typeRoute)))
+                )    
+            } else {
+                setFilterCarriers(carriers
+                    .filter((item) => item.type.some((type) => types.includes(type)))
+                    .filter((item) => item.route.some((routeItem) => countryDeparture.includes(routeItem.countryDeparture)))
+                    .filter((item) => item.route.some((routeItem) => countryArrival.includes(routeItem.countryRoute)))
+                )
+            }
         }
     }, [carriers])
 
@@ -65,14 +75,13 @@ const RequestItem = observer(() => {
             <div className="request-header">
                 { itemIndex && 
                     <>
-                        <span className={classNames('request-header-active', { 'request-active': (isActiveSearch === 'edit-request') })} onClick={() => setIsActiveSearch('edit-request')}>Заявки</span>
+                        <span className={classNames('request-header-active', { 'request-active': (isActiveSearch === 'edit-request') })} onClick={() => setIsActiveSearch('edit-request')}>Заявка</span>
                         <span>/</span>
                         <span className={classNames('request-header-active', { 'request-active': (isActiveSearch === 'edit-search') })} onClick={() => setIsActiveSearch('edit-search')}>Поиск подрядчика</span>
                     </>
                 }
                 { !itemIndex && 
-                    <h3>Заявки</h3>
-
+                    <h3>Заявка</h3>
                 }
             </div>
             {(isActiveSearch === 'edit-request') && <Request register={register} handleSubmit={handleSubmit} saveRequest={saveRequest} navigate={navigate}/>}
