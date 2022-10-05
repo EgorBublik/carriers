@@ -23,7 +23,6 @@ const CourseList = observer(() => {
             'departure',
             'destination',
             'stop.destination'
-
         ],    
         threshold: 0.3
     })
