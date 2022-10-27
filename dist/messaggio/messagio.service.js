@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MessaggioService = exports.MESSAGGIO_API_KEY = void 0;
 const common_1 = require("@nestjs/common");
 const axios_1 = require("@nestjs/axios");
-exports.MESSAGGIO_API_KEY = "ccrdhttccnrc739cds40";
+exports.MESSAGGIO_API_KEY = "";
 let MessaggioService = class MessaggioService {
     constructor(httpService) {
         this.httpService = httpService;

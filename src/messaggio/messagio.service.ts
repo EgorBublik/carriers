@@ -8,12 +8,11 @@ export class MessaggioService {
     constructor(private readonly httpService: HttpService) {}
 
     async sendMessage(phones: string[]): Promise<any> {
-        // return console.log(phones)
         try {
             const result = await this.httpService.axiosRef.post(`https://msg.messaggio.com/api/v1/send`,
                 {
                     // recipients: phones.map((phone) => ({phone})),
-                    recipients: [{phone: '80292290809'}],
+                    recipients: [{phone: ''}],
                     channels: ["viber"],
                     viber: {
                         from: 'Radiance',

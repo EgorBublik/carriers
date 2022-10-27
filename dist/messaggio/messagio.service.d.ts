@@ -1,5 +1,5 @@
 import { HttpService } from "@nestjs/axios";
-export declare const MESSAGGIO_API_KEY = "ccrdhttccnrc739cds40";
+export declare const MESSAGGIO_API_KEY = "";
 export declare class MessaggioService {
     private readonly httpService;
     constructor(httpService: HttpService);
