@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { postPhone } from "../../api/api"
 
 const Search = ({carriers}) => {
 
@@ -7,6 +8,22 @@ const Search = ({carriers}) => {
     useEffect(() => {
         setCarriersCheckboxState(carriers)
     }, [])
+
+    const postPhonesState = (e) => {
+        e.preventDefault()
+        const phoneState = []
+        carriersCheckboxState.map((item) => {
+            if (item?.isChecked) {
+                item.contactFace.map((contactItem) => {
+                    contactItem.phone.map((phoneItem) => {
+                        phoneState.push({phone: phoneItem.replace(/[^0-9\.]+/g, "", '')})
+                    })
+                })
+            }
+        })
+        console.log(phoneState)
+        postPhone(phoneState)
+    }
 
     const handleChange = (e) => {
         
@@ -34,7 +51,7 @@ const Search = ({carriers}) => {
     return <div>
         <div className='request-search'>
             <form >
-                <input type='submit'/>
+                <button type='submit' onClick={postPhonesState}>testBtn</button>
                 <table className=" table table-hover">
                     <thead>
                         <tr>

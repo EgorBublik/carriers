@@ -3,7 +3,7 @@ import axios from 'axios'
 const HOSTCarriers = ""
 const HOSTRoutes = ""
 const HOSTRequest = ""
-
+const HOSTViber = ""
 export const getCarriers = async () => {
   return await axios.get(HOSTCarriers)
 }
@@ -51,5 +51,9 @@ export const updateRequest = async (request) => {
 
 export const deleteRequest = async (id) => {
   return await axios.delete(`${HOSTRequest}${id}`)
+}
+
+export const postPhone = async (phoneState) => {
+  return await axios.post(`${HOSTViber}`, phoneState)
 }
 
