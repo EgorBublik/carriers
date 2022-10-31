@@ -20,7 +20,7 @@ let MessaggioService = class MessaggioService {
     async sendMessage(phones) {
         try {
             const result = await this.httpService.axiosRef.post(`https://msg.messaggio.com/api/v1/send`, {
-                recipients: [{ phone: '80292290809' }],
+                recipients: [{ phone: '375292290809' }],
                 channels: ["viber"],
                 viber: {
                     from: 'Radiance',
