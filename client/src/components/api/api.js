@@ -3,6 +3,7 @@ import axios from 'axios'
 const HOSTCarriers = ""
 const HOSTRoutes = ""
 const HOSTRequest = ""
+const HOSTAuthorization = ""
 const HOSTViber = ""
 
 export const getCarriers = async () => {
@@ -71,7 +72,7 @@ export const postPhone = async (phoneState) => {
 }
 
 export const checkAuthorization = async (authState) => {
-  axios.post("http://localhost:4000/auth/login", authState)
+  axios.post(HOSTAuthorization, authState)
     .then(response => {
       const token  =  response.data.access_token;
       localStorage.setItem("token", token);
