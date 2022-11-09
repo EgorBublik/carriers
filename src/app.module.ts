@@ -10,7 +10,7 @@ import { UsersModule } from './users/users.module';
 
 
 @Module({
-  imports: [CarriersModule, AmoCrmModule, RoutesModule, MessaggioModule, RequestsModule, AuthModule, UsersModule, MongooseModule.forRoot()],
+  imports: [CarriersModule, AmoCrmModule, RoutesModule, MessaggioModule, RequestsModule, AuthModule, UsersModule, MongooseModule.forRoot('')],
   controllers: [],
   providers: [],
 })
