@@ -20,7 +20,7 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [carriers_module_1.CarriersModule, amocrm_module_1.AmoCrmModule, routes_module_1.RoutesModule, messagio_module_1.MessaggioModule, requests_module_1.RequestsModule, mongoose_1.MongooseModule.forRoot('mongodb+srv://EgorBublik1:1q2w3e@cluster0.yqm8y.mongodb.net/Carriers?retryWrites=true&w=majority'), auth_module_1.AuthModule, users_module_1.UsersModule],
+        imports: [carriers_module_1.CarriersModule, amocrm_module_1.AmoCrmModule, routes_module_1.RoutesModule, messagio_module_1.MessaggioModule, requests_module_1.RequestsModule, auth_module_1.AuthModule, users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot('mongodb+srv://EgorBublik1:1q2w3e@cluster0.yqm8y.mongodb.net/Carriers?retryWrites=true&w=majority')],
         controllers: [],
         providers: [],
     })
