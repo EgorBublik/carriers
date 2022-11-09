@@ -4,8 +4,21 @@ const HOSTCarriers = ""
 const HOSTRoutes = ""
 const HOSTRequest = ""
 const HOSTViber = ""
+
 export const getCarriers = async () => {
-  return await axios.get(HOSTCarriers)
+  let list = await axios.get(HOSTCarriers)
+  
+  list.data.forEach(item => {
+    item[item.name] = item.value;  
+  });
+
+  list.data.sort(function(a,b) {
+    var x = a.name.toLowerCase();
+    var y = b.name.toLowerCase();
+    return x < y ? -1 : x > y ? 1 : 0;
+  })
+  return list
+  // return await axios.get(HOSTCarriers)
 }
 
 export const createCarrier = async (carrier) => {
@@ -57,3 +70,28 @@ export const postPhone = async (phoneState) => {
   return await axios.post(`${HOSTViber}`, phoneState)
 }
 
+export const checkAuthorization = async (authState) => {
+  axios.post("http://localhost:4000/auth/login", authState)
+    .then(response => {
+      const token  =  response.data.access_token;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", authState.username)
+      setAuthToken(token);
+      console.log('response')
+      window.location.href = 'carriers'
+      return
+    })
+  .catch(err => console.log(err));
+}
+
+export const logOut = async () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user")
+  window.location.href = 'auth'
+}
+
+export const setAuthToken = token => {
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  } else delete axios.defaults.headers.common["Authorization"];
+}

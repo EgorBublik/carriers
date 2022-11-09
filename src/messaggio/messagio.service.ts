@@ -12,7 +12,7 @@ export class MessaggioService {
             const result = await this.httpService.axiosRef.post(`https://msg.messaggio.com/api/v1/send`,
                 {
                     // recipients: phones.map((phone) => ({phone})),
-                    recipients: [{phone: ''}],
+                    recipients: [],
                     channels: ["viber"],
                     viber: {
                         from: 'Radiance',
