@@ -101,13 +101,13 @@ const RequestList = observer(() => {
                                             return (
                                                 <div>{item}</div>
                                                 
-                                            )
+                                            )   
                                         }
                                         )}</td>
                                         <td>{request.freight} {request.currency}</td>
                                         <td>{request.comment}</td>
                                         <td>
-                                            <NavLink to={`/request/edit-request/${index}`} >
+                                            <NavLink to={`/request/edit-request/${request._id}`} >
                                                 <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>   
                                             </NavLink>
                                             <FontAwesomeIcon className='fa-trash-can' onClick={() => onClickRemove(request._id)} icon={faTrashCan}/>

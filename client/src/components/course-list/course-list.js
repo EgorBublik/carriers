@@ -97,7 +97,7 @@ const CourseList = observer(() => {
                                                 }
                                             })}</td>
                                         <td>
-                                            <NavLink to={`/route/edit-route/${index}`}>
+                                            <NavLink to={`/route/edit-route/${route._id}`}>
                                                 <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>   
                                             </NavLink>
                                             <FontAwesomeIcon onClick={() => onClickRemove(route._id)} className='fa-trash-can' icon={faTrashCan}/>

@@ -12,22 +12,21 @@ import { } from 'bootstrap'
 
 
 const CarrierItem = observer(() => {
-    const {itemIndex} = useParams()   
+    const {id} = useParams()   
     const store = useStores()
-    const carriers = store.carrierStore.carriers
     const navigate = useNavigate()
-    
-    
+
+    const carriers = store.carrierStore.carriers
+    const initialValue = carriers.find(carrier => carrier._id === id)
     
     const { control, register, handleSubmit, formState: {errors} } = useForm( {
         defaultValues: {
-            ...carriers[itemIndex]
+            ...initialValue
         }
     });
 
     const saveResult = async (data) => {
-        // console.log('save', data)
-        if (itemIndex) {
+        if (id) {
             await updateCarrier(data)
         } else {
             await createCarrier(data)

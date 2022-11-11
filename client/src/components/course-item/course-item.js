@@ -2,7 +2,6 @@ import './course-item.css'
 import { createRoutes, updateRoute } from '../api/api'
 import { useForm, useFieldArray } from "react-hook-form";
 import {RouteForm} from './RouteForm/RouteForm';
-
 import { observer } from 'mobx-react';
 import { useStores } from '../../store/rootstore'; 
 import { useParams, useNavigate } from 'react-router-dom';
@@ -10,12 +9,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 const CourseItem = observer(() => {
     const navigate = useNavigate()
     const store = useStores()
-    const {itemIndex} = useParams()
+    const {id} = useParams()
     const routes = store.routeStore.routes
-    
+    const initialValue = routes.find(route => route._id === id)
+
     const { register, control, handleSubmit } = useForm({
         defaultValues: {
-        ...routes[itemIndex]
+        ...initialValue
         }
     });
 
@@ -26,7 +26,7 @@ const CourseItem = observer(() => {
     });
 
     const saveRoute = async (data) => {
-        if (itemIndex) {
+        if (id) {
             await updateRoute(data)
         } else {
             await createRoutes(data)
