@@ -14,10 +14,10 @@ const Authorization = () => {
             setAuthToken(token);
         }    
     }, [token])
-
+    
     const signIn = (data, e) => {
         e.preventDefault()
-        checkAuthorization(data).catch(setErrors('Неверный логин или пароль'))
+        checkAuthorization(data).catch(() => setErrors('Неверный логин или пароль'))
     }
 
     return ( 

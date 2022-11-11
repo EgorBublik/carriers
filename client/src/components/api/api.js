@@ -19,7 +19,6 @@ export const getCarriers = async () => {
     return x < y ? -1 : x > y ? 1 : 0;
   })
   return list
-  // return await axios.get(HOSTCarriers)
 }
 
 export const createCarrier = async (carrier) => {
@@ -79,7 +78,7 @@ export const checkAuthorization = async (authState) => {
       localStorage.setItem("user", authState.username)
       setAuthToken(token);
       console.log('response')
-      window.location.href = 'carriers'
+      window.location.href = './carriers'
       return
     })
   .catch(err => console.log(err));

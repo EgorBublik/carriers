@@ -15,7 +15,7 @@ const MenuLeft = () => {
             </div>
             <div className="user row">
                 <span className="username col-10">{user}</span>
-                <button type="button" onClick={logOut} class="btn btn-outline-danger col-2" title="Выйти">X</button>
+                <button type="button" onClick={logOut} className="btn btn-outline-danger col-2" title="Выйти">X</button>
             </div>
             <div className="menu-list"> 
                 <NavLink className={({ isActive }) => (isActive ? 'menu-list-item active' : 'menu-list-item')} to="/users">Пользователи</NavLink>

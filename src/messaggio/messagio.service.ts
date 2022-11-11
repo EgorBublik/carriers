@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { HttpService } from "@nestjs/axios"
-export const MESSAGGIO_API_KEY = ""
+export const MESSAGGIO_API_KEY = "ccrdd3lccnrc739cdfeg"
 
 @Injectable()
 export class MessaggioService {
@@ -11,8 +11,8 @@ export class MessaggioService {
         try {
             const result = await this.httpService.axiosRef.post(`https://msg.messaggio.com/api/v1/send`,
                 {
-                    // recipients: phones.map((phone) => ({phone})),
-                    recipients: [{phone: '375292290809'}],
+                    recipients: phones.map((phone) => ({phone})),
+                    // recipients: [{phone: ''}],
                     channels: ["viber"],
                     viber: {
                         from: 'Radiance',

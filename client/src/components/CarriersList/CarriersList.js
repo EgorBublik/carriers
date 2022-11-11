@@ -32,6 +32,9 @@ const CarriersList = observer(() => {
     })
     
     const handleSearch = (e) => {
+        if (currentPage !== 1) {
+            setCurrentPage(1)
+        }
         if (e.target.value !== '') {
             setFilterCarriersState(fuse.search(e.target.value).map(result => result.item))
         } else {
@@ -114,7 +117,7 @@ const CarriersList = observer(() => {
                                             )})}
                                         </td>
                                         <td>
-                                            <NavLink to={`/carriers/edit-carrier/${currentPage == 1 ? index : (index + (carriersPerPage * (currentPage - 1)))}`} >
+                                            <NavLink to={`/carriers/edit-carrier/${carrier._id}`} >
                                                 <FontAwesomeIcon className='fa-pencil' icon={faPencil}/>   
                                             </NavLink>
                                             <FontAwesomeIcon onClick={() => onClickRemove(carrier._id)} className='fa-trash-can' icon={faTrashCan}/>

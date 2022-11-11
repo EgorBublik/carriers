@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MessaggioService = exports.MESSAGGIO_API_KEY = void 0;
 const common_1 = require("@nestjs/common");
 const axios_1 = require("@nestjs/axios");
-exports.MESSAGGIO_API_KEY = "";
+exports.MESSAGGIO_API_KEY = "ccrdd3lccnrc739cdfeg";
 let MessaggioService = class MessaggioService {
     constructor(httpService) {
         this.httpService = httpService;
@@ -20,7 +20,7 @@ let MessaggioService = class MessaggioService {
     async sendMessage(phones) {
         try {
             const result = await this.httpService.axiosRef.post(`https://msg.messaggio.com/api/v1/send`, {
-                recipients: [{ phone: '375292290809' }],
+                recipients: phones.map((phone) => ({ phone })),
                 channels: ["viber"],
                 viber: {
                     from: 'Radiance',
