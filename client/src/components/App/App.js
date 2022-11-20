@@ -16,13 +16,21 @@ import { history } from '../../history/history';
 import { useState, useEffect } from 'react';
 
 const App = () => {
-  const rootStore = new RootStore()
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"))
+  const [rootStore, setRootStore] = useState()
 
   useEffect(() => {
       localStorage.getItem("token") ? setIsLoggedIn(true) : setIsLoggedIn(false)
   })
 
+  useEffect(() => {
+    setRootStore(new RootStore())
+  }, [])
+
+  if (!rootStore) {
+    return null
+  }
+  
   return (
 
     <RootStoreProvider value={rootStore} history={history}>

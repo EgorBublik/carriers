@@ -71,7 +71,7 @@ export const postPhone = async (phoneState) => {
 }
 
 export const checkAuthorization = async (authState) => {
-  axios.post(HOSTAuthorization, authState)
+  return axios.post(HOSTAuthorization, authState)
     .then(response => {
       const token  =  response.data.access_token;
       localStorage.setItem("token", token);
@@ -81,7 +81,6 @@ export const checkAuthorization = async (authState) => {
       window.location.href = './carriers'
       return
     })
-  .catch(err => console.log(err));
 }
 
 export const logOut = async () => {

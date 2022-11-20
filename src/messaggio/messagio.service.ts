@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { HttpService } from "@nestjs/axios"
-export const MESSAGGIO_API_KEY = "ccrdd3lccnrc739cdfeg"
+export const MESSAGGIO_API_KEY = ""
 
 @Injectable()
 export class MessaggioService {

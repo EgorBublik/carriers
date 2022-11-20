@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 import { useStores } from '../../store/rootstore'; 
 import { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
@@ -17,6 +17,7 @@ const CarriersList = observer(() => {
     
     const store = useStores()
     const carriers = store.carrierStore.carriers
+    // console.log(store)
     
     useEffect(() => {
         store.carrierStore.getCarriers()
@@ -24,7 +25,7 @@ const CarriersList = observer(() => {
     
     useEffect(() => {
         setFilterCarriersState(carriers)
-    }, [carriers])
+    }, [carriers.length])
 
     const fuse = new Fuse(carriers, {
         keys: filterKeys,    
@@ -75,7 +76,12 @@ const CarriersList = observer(() => {
             setCurrentPage(prev => prev - 1)
         }
     }
-  
+
+    // console.log(store.carrierStore.allCarriers())
+
+    if (store.carrierStore.isLoading) {
+        return <h1>LOADING...</h1>
+    }
     return (
         <div className="container">
             <div className="carriers-header"> 
@@ -92,6 +98,7 @@ const CarriersList = observer(() => {
                     </div>
                 </div>
             </div>
+            
             <div className="carriers-list">
                 <div className="search">
                     <input className="search-input form-control" onChange={handleSearch} type="search" placeholder="Поиск" aria-label="Search"/>
