@@ -32,7 +32,6 @@ let CarriersController = class CarriersController {
         return this.carriersService.create(createCarrierDto);
     }
     remove(id) {
-        console.log(id);
         return this.carriersService.remove(id);
     }
     update(updateCarrierDto, id) {

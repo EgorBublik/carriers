@@ -20,15 +20,15 @@ let MessagioController = class MessagioController {
     constructor(messaggioService) {
         this.messaggioService = messaggioService;
     }
-    async sendMessage(phones) {
-        return this.messaggioService.sendMessage(phones);
+    async sendMessage(data = {}) {
+        return this.messaggioService.sendMessage({ data });
     }
 };
 __decorate([
     (0, common_1.Post)('viber'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Array]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], MessagioController.prototype, "sendMessage", null);
 MessagioController = __decorate([

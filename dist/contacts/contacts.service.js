@@ -28,7 +28,6 @@ let ContactsService = class ContactsService {
         return this.contactModel.findById(id);
     }
     async create(contactDto) {
-        console.log(contactDto);
         const newContact = new this.contactModel(contactDto);
         return newContact.save();
     }

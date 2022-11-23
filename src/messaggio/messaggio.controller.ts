@@ -10,7 +10,7 @@ export class MessagioController {
     constructor (@Inject(forwardRef(() => MessaggioService))private readonly messaggioService: MessaggioService) {}
 
     @Post('viber')
-    async sendMessage(@Body() phones:string[]): Promise<any> {
-        return this.messaggioService.sendMessage(phones)
+    async sendMessage(@Body() data = {}): Promise<any> {
+        return this.messaggioService.sendMessage({data})
     }
 }

@@ -31,7 +31,6 @@ let ContactsController = class ContactsController {
         return this.contactsService.create(createContactDto);
     }
     remove(id) {
-        console.log(id);
         return this.contactsService.remove(id);
     }
     update(updateContactDto, id) {

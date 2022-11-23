@@ -25,7 +25,6 @@ let RoutesService = class RoutesService {
         return this.routeModel.find().exec();
     }
     async create(createRouteDto) {
-        console.log(createRouteDto);
         const newRoute = new this.routeModel(createRouteDto);
         return newRoute.save();
     }

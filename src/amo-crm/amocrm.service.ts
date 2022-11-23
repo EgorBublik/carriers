@@ -34,7 +34,6 @@ export class AmoCrmService {
                 
                 return result.data
         } catch (e) {
-            console.log('errror:', e)
             return e
         }
     }
@@ -56,34 +55,10 @@ export class AmoCrmService {
                     "headers": {"content-type": "application/json"}
                 })
             fs.writeFileSync('./src/amo-crm/token.txt', JSON.stringify(accessTokenResult.data))
-            // console.log(accessTokenResult)
-            // return accessTokenResult
         } catch (e) {
-            console.log(e)
             return e
         }
     }
-
-    // async getPostInfo(): Promise<any> {
-    //     try {
-    //         const accessToken = fs.readFileSync('./src/amo-crm/token.txt', 'utf8')
-    //         console.log('accessTOKEN: ', JSON.parse(accessToken).access_token)
-    //         const getInfo = await this.httpService.axiosRef.post(`https://radiancedir.amocrm.ru/api/v4/account`, 
-    //             {
-    //             },
-    //             {
-    //                 "headers" : {
-    //                                 "content-type": "application/json",
-    //                                 "Authorization": `Bearer ${JSON.parse(accessToken).access_token}`
-    //                             }
-    //             })
-    //             console.log('ReSuLT:', getInfo.data)
-    //         return getInfo.data
-    //     } catch (e) {   
-    //         console.log(e)
-    //         return "Error"
-    //     }
-    // }
 
     async getPostInfo(page, type): Promise<any> {
         try {
@@ -97,13 +72,11 @@ export class AmoCrmService {
                 })
             return getInfo.data
         } catch (e) {   
-            console.log(e)
             return "Error"
         }
     }
 
     async allPages (type, page = 1, prev = []) {
-        // console.log(page, prev)
         const result = await this.getPostInfo(page, type)
         
         if (result?._links) {

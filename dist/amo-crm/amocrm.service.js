@@ -40,7 +40,6 @@ let AmoCrmService = class AmoCrmService {
             return result.data;
         }
         catch (e) {
-            console.log('errror:', e);
             return e;
         }
     }
@@ -59,7 +58,6 @@ let AmoCrmService = class AmoCrmService {
             fs.writeFileSync('./src/amo-crm/token.txt', JSON.stringify(accessTokenResult.data));
         }
         catch (e) {
-            console.log(e);
             return e;
         }
     }
@@ -75,7 +73,6 @@ let AmoCrmService = class AmoCrmService {
             return getInfo.data;
         }
         catch (e) {
-            console.log(e);
             return "Error";
         }
     }

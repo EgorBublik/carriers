@@ -1,16 +1,32 @@
 import { useState, useEffect } from "react"
 import { postPhone } from "../../api/api"
+// import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useForm } from "react-hook-form";
 
 const Search = ({carriers}) => {
 
     const [carriersCheckboxState, setCarriersCheckboxState] = useState([])
 
+    const { register, handleSubmit } = useForm( {
+    });
+    const [errors, setErrors] = useState()
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+        setErrors('')
+        setShow(false)
+    }
+    const handleShow = () => setShow(true);
+
     useEffect(() => {
         setCarriersCheckboxState(carriers)
     }, [])
 
-    const postPhonesState = (e) => {
-        e.preventDefault()
+    const postPhonesState = async (data) => {
+        // e.preventDefault()
         const phoneState = []
         carriersCheckboxState.map((item) => {
             if (item?.isChecked) {
@@ -21,8 +37,12 @@ const Search = ({carriers}) => {
                 })
             }
         })
-        console.log(phoneState)
-        postPhone(phoneState)
+        try {
+            await postPhone(phoneState, data.textViber)
+            handleClose()
+        } catch (e) {
+            setErrors('Что-то пошло не так. Сообщение не доставлено')
+        }
     }
 
     const handleChange = (e) => {
@@ -43,15 +63,42 @@ const Search = ({carriers}) => {
                 carriersCheckboxState.map((item) =>
                     item.name === name ? { ...item, isChecked: checked } : item
                 )
-
             setCarriersCheckboxState(tempCarriers)
         }
-  }
+    }
 
     return <div>
         <div className='request-search'>
             <form >
-                <button type='submit' onClick={postPhonesState}>testBtn</button>
+                {/* <button type='submit' onClick={postPhonesState}>testBtn</button> */}
+                <Button variant="primary" onClick={handleShow}>
+                    Текст рассылки Viber
+                </Button>
+
+                <Modal show={show} onHide={handleClose}>
+                    
+                    
+                    <Modal.Body>
+                    <div class="form-group">
+                        <textarea 
+                            class="form-control" 
+                            {...register("textViber")}
+                            id="exampleFormControlTextarea1" 
+                            rows="4" 
+                            placeholder="Введите текст рассылки"></textarea>
+                    </div>
+                    {errors && <p style={{color:'red'}}>{errors}</p>}   
+                    </Modal.Body>
+                    
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Закрыть
+                        </Button>
+                        <Button variant="primary" onClick={handleSubmit(postPhonesState)}>
+                            Отправить рассылку Viber
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <table className=" table table-hover">
                     <thead>
                         <tr>

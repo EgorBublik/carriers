@@ -28,7 +28,6 @@ export class ContactsController {
 
     @Delete(':id')
     remove(@Param('id') id:string): Promise<Contact> {
-        console.log(id)
         return this.contactsService.remove(id)
     }
     

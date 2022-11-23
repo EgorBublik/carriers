@@ -34,7 +34,6 @@ let CarriersService = class CarriersService {
         return await Promise.all(amoIds.map(this.getByAmoId));
     }
     async create(carrierDto) {
-        console.log(carrierDto);
         const newCarrier = new this.carrierModel(carrierDto);
         return newCarrier.save();
     }

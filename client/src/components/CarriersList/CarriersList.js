@@ -17,7 +17,6 @@ const CarriersList = observer(() => {
     
     const store = useStores()
     const carriers = store.carrierStore.carriers
-    // console.log(store)
     
     useEffect(() => {
         store.carrierStore.getCarriers()
@@ -76,8 +75,6 @@ const CarriersList = observer(() => {
             setCurrentPage(prev => prev - 1)
         }
     }
-
-    // console.log(store.carrierStore.allCarriers())
 
     if (store.carrierStore.isLoading) {
         return <h1>LOADING...</h1>

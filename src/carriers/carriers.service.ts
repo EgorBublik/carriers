@@ -30,7 +30,6 @@ export class CarriersService {
     }
 
     async create(carrierDto: CreateCarrierDto): Promise<Carrier> {
-        console.log(carrierDto)
         const newCarrier = new this.carrierModel(carrierDto)
         return newCarrier.save()
     }

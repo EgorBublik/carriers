@@ -12,7 +12,6 @@ export class CarrierStore {
 
     setCarriers(carriers) {
         this.carriers = carriers
-        console.log(this)
     }
 
     setLoading(isLoading) {
@@ -38,7 +37,6 @@ export class CarrierStore {
 
     allCarriers() {
         return this.carriers
-    console.log()
     } 
 }
 

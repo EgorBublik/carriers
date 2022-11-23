@@ -17,7 +17,6 @@ export class RoutesService {
   }
   
   async create(createRouteDto: CreateRouteDto): Promise<Route> {
-    console.log(createRouteDto)
     const newRoute = new this.routeModel(createRouteDto)
     return newRoute.save()
   }

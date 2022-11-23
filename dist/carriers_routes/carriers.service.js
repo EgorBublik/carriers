@@ -28,7 +28,6 @@ let CarriersService = class CarriersService {
         return this.carrierModel.findById(id);
     }
     async create(carrierDto) {
-        console.log(carrierDto);
         const newCarrier = new this.carrierModel(carrierDto);
         return newCarrier.save();
     }

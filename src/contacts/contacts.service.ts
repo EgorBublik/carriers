@@ -22,7 +22,6 @@ export class ContactsService {
     }
 
     async create(contactDto: CreateContactDto): Promise<Contact> {
-        console.log(contactDto)
         const newContact = new this.contactModel(contactDto)
         return newContact.save()
     }

@@ -66,8 +66,8 @@ export const deleteRequest = async (id) => {
   return await axios.delete(`${HOSTRequest}${id}`)
 }
 
-export const postPhone = async (phoneState) => {
-  return await axios.post(`${HOSTViber}`, phoneState)
+export const postPhone = async (phoneState, textViber) => {
+  return await axios.post(`${HOSTViber}`, {phoneState, textViber})
 }
 
 export const checkAuthorization = async (authState) => {
@@ -77,7 +77,6 @@ export const checkAuthorization = async (authState) => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", authState.username)
       setAuthToken(token);
-      console.log('response')
       window.location.href = './carriers'
       return
     })
