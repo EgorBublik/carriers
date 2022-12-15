@@ -37,16 +37,23 @@ const RequestItem = observer(() => {
             const types = initialValue.type  
             const countryDeparture = initialValue.countryDeparture
             const countryArrival = initialValue.countryArrival
+            const regionDeparture = initialValue.regionDeparture
+            const regionArrival = initialValue.regionArrival            
             if ( countryArrival == 'РБ' && countryDeparture == 'РБ') {
                 setFilterCarriers(carriers
                     .filter((item) => item.type.some((type) => types.includes(type)))
                     .filter((item) => item.route.some((routeItem) => countryDeparture.includes(routeItem.typeRoute)))
+                    .filter((item) => regionDeparture && item.route.some((routeItem) => regionDeparture.includes(routeItem.regionDeparture)))
+                    .filter((item) => regionArrival && item.route.some((routeItem) => regionArrival.includes(routeItem.regionDeparture)))
                 )    
             } else {
                 setFilterCarriers(carriers
                     .filter((item) => item.type.some((type) => types.includes(type)))
                     .filter((item) => item.route.some((routeItem) => countryDeparture.includes(routeItem.countryDeparture)))
                     .filter((item) => item.route.some((routeItem) => countryArrival.includes(routeItem.countryRoute)))
+                    .filter((item) => regionDeparture && item.route.some((routeItem) => regionDeparture.includes(routeItem.regionDeparture)))
+                    .filter((item) => regionArrival && item.route.some((routeItem) => regionArrival.includes(routeItem.regionDeparture)))
+
                 )
             }
         }

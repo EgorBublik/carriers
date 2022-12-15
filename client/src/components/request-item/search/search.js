@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import { postPhone } from "../../api/api"
-// import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useForm } from "react-hook-form";
@@ -26,13 +25,12 @@ const Search = ({carriers}) => {
     }, [])
 
     const postPhonesState = async (data) => {
-        // e.preventDefault()
         const phoneState = []
         carriersCheckboxState.map((item) => {
             if (item?.isChecked) {
                 item.contactFace.map((contactItem) => {
                     contactItem.phone.map((phoneItem) => {
-                        phoneState.push({phone: phoneItem.replace(/[^0-9\.]+/g, "", '')})
+                        phoneState.push({phone: phoneItem.replace(/[^0-9\.]+/g, "", '')}) // Оставляет только цифры
                     })
                 })
             }
@@ -67,10 +65,17 @@ const Search = ({carriers}) => {
         }
     }
 
+    const checkboxTrueCount = () => {
+        let count = 0
+        carriersCheckboxState.map((item) => {
+            if (item.isChecked) count++
+        })
+        return count
+    }
+
     return <div>
         <div className='request-search'>
             <form >
-                {/* <button type='submit' onClick={postPhonesState}>testBtn</button> */}
                 <Button variant="primary" onClick={handleShow}>
                     Текст рассылки Viber
                 </Button>
@@ -111,6 +116,7 @@ const Search = ({carriers}) => {
                                     onChange={handleChange}
                                 />
                             </td>
+                            <th>{checkboxTrueCount()}</th>
                             <th>Название компании</th>
                             <th>Тип А/М</th>
                             <th>Менеджер</th>
@@ -118,7 +124,7 @@ const Search = ({carriers}) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {carriersCheckboxState.map((item) => {
+                        {carriersCheckboxState.map((item, index) => {
                             return (
                                 <tr>
                                     <td className='request-checkbox'>                                        
@@ -127,8 +133,9 @@ const Search = ({carriers}) => {
                                             name={item.name}
                                             checked={item?.isChecked || false}
                                             onChange={handleChange}
-                                            />
+                                        />
                                     </td>
+                                    <td>{index + 1}</td>
                                     <td>{item.name}</td>
                                     <td>{item.type.map(element => `${element} `)}</td>
                                     <td>{item.contactFace.map(element => {

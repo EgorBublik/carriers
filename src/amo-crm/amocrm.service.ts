@@ -6,7 +6,6 @@ import { CarriersService } from "src/carriers/carriers.service";
 
 const getCustomField = (name, data, isArray = false) => {
     const values = data?.custom_fields_values?.find((item) =>  item.field_name === name)?.values?.map(item => item.value)
-    // if (values?.length > 1 ) console.warn(name, 'Больше 1', values)
     return !isArray ? values?.[0] : values
 }
 
@@ -16,7 +15,6 @@ export class AmoCrmService {
     constructor(private readonly httpService: HttpService, private readonly carriersService: CarriersService) {}
 
     async getToken(code: string): Promise<any> {
-        // fs.writeFileSync('/src/amo-crm/token.txt', `${JSON.stringify(result.data)}`)
         
         try {
             const result = await this.httpService.axiosRef.post(`https://${AMO_CLIENT.domain}/oauth2/access_token`,

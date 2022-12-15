@@ -10,7 +10,7 @@ import './CarriersList.css'
 const CarriersList = observer(() => {
     
     const [currentPage, setCurrentPage] = useState(1)
-    const [carriersPerPage] = useState(7)
+    const [carriersPerPage] = useState(10)
     const [filterKeys] = useState(['name'])
     const [updateCarriers, setUpdateCarriers] = useState(0)
     const [filterCarriersState, setFilterCarriersState] = useState([])
@@ -133,6 +133,10 @@ const CarriersList = observer(() => {
                     </table>
                 </div>
             </div>
+            <div className='carriers-count'>
+                Количество перевозчиков <b>{carriers.length}</b>
+            </div>
+
             <div className='carriers-pagination'>
                 <ul className='pagination'>
                     <li className={currentPage !== 1 ? 'page-item' : 'page-item disabled'}>

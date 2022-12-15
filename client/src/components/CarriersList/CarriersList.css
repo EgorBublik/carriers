@@ -56,3 +56,9 @@ table tr {
     margin-top: 20px;
     justify-content: center;
 }
+
+.carriers-count {
+    padding-top: 5px;
+    text-align: right;
+}
+
